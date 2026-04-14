@@ -12,6 +12,9 @@ export default {
         "morandi-peach": "#f8e0c8",
         "morandi-sky": "#c8e0f8",
         "morandi-cream": "#f8f0e0",
+        "morandi-lavender": "#e8d7f0",
+        primary: "#f8d7e0",
+        secondary: "#c8e6d8",
       },
       borderRadius: {
         "3xl": "2rem",
