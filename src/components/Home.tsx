@@ -9,22 +9,52 @@ export default function Home() {
 
   return (
     <div className="text-center py-16 px-6">
+      {/* 标题区域 */}
       <motion.div 
         animate={{ rotate: [0, 12, -12, 0] }}
-        transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse" }}
+        transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
         className="mx-auto mb-8 flex justify-center"
       >
-        <PawPrint className="w-28 h-28 text-morandi-pink drop-shadow-xl" />
+        <PawPrint className="w-28 h-28 text-morandi-pink drop-shadow-2xl" />
       </motion.div>
 
-      <h1 className="text-7xl font-bold text-morandi-pink mb-4 tracking-tighter">宠格测试</h1>
-      <p className="text-2xl text-gray-700 mb-2">你的宠物到底是什么性格？</p>
-      <p className="text-lg text-gray-500">21题 · 揭秘16种可爱人格</p>
+      {/* 主标题 */}
+      <motion.h1 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-7xl font-bold bg-gradient-to-r from-morandi-pink to-morandi-peach bg-clip-text text-transparent mb-4 tracking-tighter"
+      >
+        宠格测试
+      </motion.h1>
 
-      <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
+      {/* 副标题 */}
+      <motion.p 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="text-2xl text-gray-700 mb-1"
+      >
+        你的宠物到底是什么性格？
+      </motion.p>
+      <motion.p 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="text-lg text-gray-500"
+      >
+        21题 · 揭秘16种可爱宠格
+      </motion.p>
+
+      {/* 开始测试按钮 */}
+      <motion.div 
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+        className="mt-12"
+      >
         <Button
           onClick={() => goToStep(1)}
-          className="mt-12 bg-morandi-pink hover:bg-morandi-peach text-white text-3xl px-20 py-9 rounded-3xl shadow-soft flex items-center gap-4 mx-auto group"
+          className="bg-morandi-pink hover:bg-morandi-peach text-white text-3xl px-20 py-9 rounded-3xl shadow-soft flex items-center gap-4 mx-auto group"
         >
           开始测试 
           <Sparkles className="w-9 h-9 group-hover:rotate-12 transition-transform" />
@@ -32,7 +62,15 @@ export default function Home() {
         </Button>
       </motion.div>
 
-      <p className="text-xs text-gray-400 mt-16">纯前端 · 治愈风 · 移动端完美适配</p>
+      {/* 正式底部文案 */}
+      <motion.p 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="text-sm text-gray-400 mt-16 tracking-wide"
+      >
+        专为宠物主人打造 · 让陪伴更有温度
+      </motion.p>
     </div>
   );
 }
