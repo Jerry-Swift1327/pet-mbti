@@ -3,7 +3,7 @@ import { useQuizStore } from '@/stores/useQuizStore';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { motion } from 'framer-motion';
-import { PawPrint, Sparkles, Heart, Share2 } from 'lucide-react';
+import { PawPrint, Heart, Share2 } from 'lucide-react';
 
 export default function Result() {
   const { 
