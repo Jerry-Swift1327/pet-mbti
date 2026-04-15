@@ -43,7 +43,7 @@ export default function Home() {
         transition={{ delay: 0.5 }}
         className="text-lg text-gray-500"
       >
-        21题 · 揭秘16种可爱宠格
+        20题 · 揭秘16种可爱宠格
       </motion.p>
 
       {/* 开始测试按钮 */}
@@ -53,7 +53,7 @@ export default function Home() {
         className="mt-12"
       >
         <Button
-          onClick={() => goToStep(1)}
+          onClick={() => goToStep(2)}
           className="bg-morandi-pink hover:bg-morandi-peach text-white text-3xl px-20 py-9 rounded-3xl shadow-soft flex items-center gap-4 mx-auto group"
         >
           开始测试 

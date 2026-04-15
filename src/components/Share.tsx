@@ -3,12 +3,26 @@ import { Button } from '@/components/ui/button';
 import { useQuizStore } from '@/stores/useQuizStore';
 import html2canvas from 'html2canvas';
 import { useRef } from 'react';
-import { PawPrint } from 'lucide-react';
 
 export default function Share() {
   const { getResult, getPersonalityType, petType, goToStep } = useQuizStore();
   const result = getResult();
   const posterRef = useRef<HTMLDivElement>(null);
+
+  const typeKey = getPersonalityType() || "UNKNOWN";
+
+  // 和 Result.tsx 完全一致的映射表
+  const keyMapping: Record<string, string> = {
+    "ECLP": "GOGO", "ECLS": "HUGS", "ECFP": "WOC", "ECFS": "OKBJ",
+    "EALP": "SEXY", "EALS": "SOUL", "EAFP": "FOOD", "EAFS": "MONK",
+    "ICLP": "CLEAN", "ICLS": "MONK", "ICFP": "WOC", "ICFS": "OKBJ",
+    "IALP": "SOUL", "IALS": "MONK", "IAFP": "LUCK", "IAFS": "MONK",
+  };
+
+  const mappedKey = keyMapping[typeKey] || typeKey;
+
+  // 图片路径（和 Result.tsx 完全一致）
+  const imagePath = `/images/pets/${mappedKey}.png`;
 
   const downloadPoster = async () => {
     if (!posterRef.current) return;
@@ -33,14 +47,24 @@ export default function Share() {
         <div className="absolute top-6 right-6 text-6xl opacity-20">🐾</div>
         <div className="absolute bottom-8 left-8 text-5xl opacity-20 rotate-12">🦴</div>
 
-        <div className="flex justify-center mb-6">
-          <PawPrint className="w-24 h-24 text-morandi-pink drop-shadow-md" />
+        {/* 动态低多边形狗狗图片 */}
+        <div className="flex justify-center mb-8">
+          <div className="w-64 h-64 bg-gradient-to-br from-morandi-pink/10 to-morandi-mint/10 rounded-3xl flex items-center justify-center border-8 border-white shadow-2xl overflow-hidden">
+            <img 
+              src={imagePath} 
+              alt={result.name || '宠格'}
+              className="w-full h-full object-contain"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = '/images/pets/placeholder.png';
+              }}
+            />
+          </div>
         </div>
-        
+
         <h2 className="text-5xl font-bold mb-4 text-morandi-pink tracking-wider">我的宠格是</h2>
         
         <div className="text-6xl font-bold mb-2 text-gray-800 leading-none">{result.name}</div>
-        <div className="text-3xl font-medium text-gray-700 mb-8">{result.english}</div>
+        <div className="text-3xl font-medium text-gray-700 mb-6">{result.english}</div>
         
         {result.nickname && (
           <p className="text-2xl text-orange-600 font-medium italic mb-10">

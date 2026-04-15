@@ -7,10 +7,10 @@ import { motion } from 'framer-motion';
 import { Share2 } from 'lucide-react';
 
 export default function Result() {
-  const { goToStep, reset, getPersonalityType, calculateScores } = useQuizStore();
+  const { petType, goToStep, reset, getPersonalityType, calculateScores } = useQuizStore();
 
   const typeKey = getPersonalityType() || "UNKNOWN";
-  const coreScores = calculateScores(); // { ei, ca, lf, ps }
+  const coreScores = calculateScores(); // ← 必须调用！
 
   const keyMapping: Record<string, string> = {
     "ECLP": "GOGO", "ECLS": "HUGS", "ECFP": "WOC", "ECFS": "OKBJ",
@@ -20,19 +20,23 @@ export default function Result() {
   };
 
   const mappedKey = keyMapping[typeKey] || typeKey;
+
   const result = (resultsData as any)[mappedKey] || {
-    name: "未知类型", english: "", nickname: "", fullDesc: "暂时无法匹配宠格",
-    suggestions: "暂无建议", toys: "暂无推荐", tips: "暂无Tips"
+    name: "未知类型",
+    english: "",
+    nickname: "",
+    fullDesc: "暂时无法匹配宠格，请检查测试逻辑",
+    suggestions: "暂无建议",
+    toys: "暂无推荐",
+    tips: "暂无Tips"
   };
 
-  // ==================== 动态匹配度计算（进一步优化） ====================
+  // ==================== 动态匹配度 ====================
   const absTotal = Math.abs(coreScores.ei) + Math.abs(coreScores.ca) + 
                    Math.abs(coreScores.lf) + Math.abs(coreScores.ps);
   
-  // 新公式：正常答题通常在 68%~92% 之间
   const matchPercent = Math.min(Math.max(Math.round(55 + (absTotal / 22) * 40), 55), 92);
 
-  // 动态精准命中维数
   const strongCount = [
     Math.abs(coreScores.ei) >= 4,
     Math.abs(coreScores.ca) >= 4,
@@ -40,7 +44,10 @@ export default function Result() {
     Math.abs(coreScores.ps) >= 4,
   ].filter(Boolean).length;
 
-  const hitDimensions = 7 + strongCount * 2;   // 基础7维 + 每强维度加2维
+  const hitDimensions = 7 + strongCount * 2;
+
+  // ==================== 图片路径（狗版） ====================
+  const imagePath = `/images/pets/${mappedKey}.png`;
 
   // ==================== 十五维度评分 ====================
   const dimensions = [
@@ -90,10 +97,18 @@ export default function Result() {
               <motion.div 
                 initial={{ scale: 0.85, rotate: -8 }}
                 animate={{ scale: 1, rotate: 0 }}
-                className="w-52 h-52 bg-gradient-to-br from-morandi-pink/10 to-morandi-mint/10 rounded-3xl flex items-center justify-center border-8 border-white shadow-2xl mb-4"
+                className="w-52 h-52 bg-gradient-to-br from-morandi-pink/10 to-morandi-mint/10 rounded-3xl flex items-center justify-center border-8 border-white shadow-2xl mb-4 overflow-hidden"
               >
-                <span className="text-9xl drop-shadow-md">🐾</span>
+                <img 
+                  src={`/images/pets/${mappedKey}.png`} 
+                  alt={result.name}
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/images/pets/placeholder.png';
+                  }}
+                />
               </motion.div>
+              
               {result.nickname && (
                 <p className="text-xl text-orange-600 font-medium italic text-center">
                   「{result.nickname}」
@@ -118,7 +133,7 @@ export default function Result() {
             <p className="text-xl leading-relaxed text-gray-700">{result.fullDesc}</p>
           </Card>
 
-          {/* 十五维度评分 - 边框加强版 */}
+          {/* 十五维度评分 */}
           <div className="mt-12">
             <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">十五维度评分</h3>
             <div className="space-y-3">
@@ -174,15 +189,8 @@ export default function Result() {
           >
             重新测试
           </Button>
-          <Button 
-            onClick={() => goToStep(4)}
-            className="flex-1 h-14 rounded-3xl bg-gradient-to-r from-morandi-pink to-morandi-mint text-white text-lg"
-          >
-            <Share2 className="mr-2 w-5 h-5" />
-            分享我的宠格
-          </Button>
         </div>
       </div>
-    </motion.div>
+    </motion.div>   
   );
 }
