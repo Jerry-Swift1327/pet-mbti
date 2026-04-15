@@ -39,7 +39,7 @@ export default function Quiz() {
             <div className="text-sm font-medium text-gray-600">
               {answeredCount} / {totalQuestions}
             </div>
-            <div className="text-xs text-gray-400">进度</div>
+            <div className="text-xs text-gray-500">进度</div>
           </div>
 
           {/* 进度条：橙色填充，未答题时显示轮廓 */}
@@ -59,7 +59,7 @@ export default function Quiz() {
                 key={q.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white border-2 border-gray-500 rounded-2xl p-5 shadow-sm"
+                className="bg-white border-2 border-gray-300 rounded-2xl p-5 shadow-sm"
               >
                 <div className="mb-3">
                   <span className="inline-block px-2 py-1.5 bg-orange-100 text-orange-500 text-sm font-medium rounded-full">
@@ -78,7 +78,7 @@ export default function Quiz() {
                       className={`flex items-start gap-3 p-3 rounded-2xl border-2 transition-all cursor-pointer
                         ${selected === index 
                           ? 'border-orange-500 bg-orange-50 shadow-md' 
-                          : 'border-gray-350 hover:border-gray-400 hover:bg-gray-200'
+                          : 'border-gray-350 hover:border-gray-00 hover:bg-gray-200'
                         }`}
                     >
                       <input
@@ -86,9 +86,9 @@ export default function Quiz() {
                         name={`q-${q.id}`}
                         checked={selected === index}
                         onChange={() => handleOptionSelect(q.id, index)}
-                        className="mt-1.5 accent-orange-500 w-4 h-5"
+                        className="mt-1.6 accent-orange-500 w-4 h-5"
                       />
-                      <span className="flex-2 leading-relaxed text-[15px]">
+                      <span className="option-text font-medium text-gray-700 flex-1 leading-relaxed text-[15px]">
                         {optionText}
                       </span>
                     </label>
