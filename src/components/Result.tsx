@@ -4,10 +4,10 @@ import resultsData from '@/data/results.json';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { motion } from 'framer-motion';
-import { Share2 } from 'lucide-react';
+
 
 export default function Result() {
-  const { petType, goToStep, reset, getPersonalityType, calculateScores } = useQuizStore();
+  const { goToStep, reset, getPersonalityType, calculateScores } = useQuizStore();
 
   const typeKey = getPersonalityType() || "UNKNOWN";
   const coreScores = calculateScores(); // ← 必须调用！
@@ -45,9 +45,6 @@ export default function Result() {
   ].filter(Boolean).length;
 
   const hitDimensions = 7 + strongCount * 2;
-
-  // ==================== 图片路径（狗版） ====================
-  const imagePath = `/images/pets/${mappedKey}.png`;
 
   // ==================== 十五维度评分 ====================
   const dimensions = [
