@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 export default function Quiz() {
   const { answers, answerQuestion, goToStep } = useQuizStore();
-  const [submitted, setSubmitted] = useState(false);
+  const [, setSubmitted] = useState(false);
 
   const answeredCount = Object.keys(answers).length;
   const totalQuestions = questions.length;

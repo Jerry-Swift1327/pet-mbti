@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { Share2 } from 'lucide-react';
 
 export default function Result() {
-  const { petType, goToStep, reset, getPersonalityType, calculateScores } = useQuizStore();
+  const { goToStep, reset, getPersonalityType, calculateScores } = useQuizStore();
 
   const typeKey = getPersonalityType() || "UNKNOWN";
   const coreScores = calculateScores(); // { ei, ca, lf, ps }
