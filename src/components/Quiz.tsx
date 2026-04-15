@@ -76,7 +76,7 @@ export default function Quiz() {
           {/* 问题文字 */}
           <motion.h2 
             key={currentQuestionIndex}
-            initial={{ opacity: , y: 15 }}
+            initial={{ opacity: 0 , y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-2xl font-semibold leading-relaxed text-center mb-12 text-gray-800 min-h-[110px]"
           >
