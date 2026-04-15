@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import questionsData from '../data/questions.json';
 import resultsData from '../data/results.json';
 
-type OptionIndex = 0 | 1 | 2 | 3;
+type OptionIndex = 0 | 1 | 2 | 3 | 4;
 type PetType = 'dog' | 'cat' | 'other';
 
 interface QuizState {
@@ -77,9 +77,21 @@ export const useQuizStore = create<QuizState>((set, get) => ({
     return eiLetter + caLetter + lfLetter + psLetter;
   },
 
-  getResult: () => {
+    getResult: () => {
     const type = get().getPersonalityType();
-    return (resultsData as any)[type] || { name: '未知类型', shortDesc: '测试数据加载中...' };
+    const keyMapping: Record<string, string> = {
+      "ECLP": "GOGO", "ECLS": "HUGS", "ECFP": "WOC", "ECFS": "OKBJ",
+      "EALP": "SEXY", "EALS": "SOUL", "EAFP": "FOOD", "EAFS": "MONK",
+      "ICLP": "CLEAN", "ICLS": "MONK", "ICFP": "WOC", "ICFS": "OKBJ",
+      "IALP": "SOUL", "IALS": "MONK", "IAFP": "LUCK", "IAFS": "MONK",
+    };
+    const mappedKey = keyMapping[type] || type;
+    return (resultsData as any)[mappedKey] || { 
+      name: '未知类型', 
+      english: '', 
+      nickname: '', 
+      fullDesc: '暂时无法匹配宠格' 
+    };
   },
 
   reset: () => set({

@@ -1,158 +1,188 @@
 // src/components/Result.tsx
 import { useQuizStore } from '@/stores/useQuizStore';
+import resultsData from '@/data/results.json';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { motion } from 'framer-motion';
-import { PawPrint, Heart, Share2 } from 'lucide-react';
+import { Share2 } from 'lucide-react';
 
 export default function Result() {
-  const { 
-    getResult, 
-    petType, 
-    getPersonalityType, 
-    goToStep,
-    calculateScores 
-  } = useQuizStore();
+  const { petType, goToStep, reset, getPersonalityType, calculateScores } = useQuizStore();
 
-  const result = getResult();
-  const typeKey = getPersonalityType();
-  const scores = calculateScores();
+  const typeKey = getPersonalityType() || "UNKNOWN";
+  const coreScores = calculateScores(); // { ei, ca, lf, ps }
 
-  const normalize = (score: number) => Math.min(Math.max(((score + 12) / 24) * 100, 10), 90);
+  const keyMapping: Record<string, string> = {
+    "ECLP": "GOGO", "ECLS": "HUGS", "ECFP": "WOC", "ECFS": "OKBJ",
+    "EALP": "SEXY", "EALS": "SOUL", "EAFP": "FOOD", "EAFS": "MONK",
+    "ICLP": "CLEAN", "ICLS": "MONK", "ICFP": "WOC", "ICFS": "OKBJ",
+    "IALP": "SOUL", "IALS": "MONK", "IAFP": "LUCK", "IAFS": "MONK",
+  };
+
+  const mappedKey = keyMapping[typeKey] || typeKey;
+  const result = (resultsData as any)[mappedKey] || {
+    name: "未知类型", english: "", nickname: "", fullDesc: "暂时无法匹配宠格",
+    suggestions: "暂无建议", toys: "暂无推荐", tips: "暂无Tips"
+  };
+
+  // ==================== 动态匹配度计算（进一步优化） ====================
+  const absTotal = Math.abs(coreScores.ei) + Math.abs(coreScores.ca) + 
+                   Math.abs(coreScores.lf) + Math.abs(coreScores.ps);
+  
+  // 新公式：正常答题通常在 68%~92% 之间
+  const matchPercent = Math.min(Math.max(Math.round(55 + (absTotal / 22) * 40), 55), 92);
+
+  // 动态精准命中维数
+  const strongCount = [
+    Math.abs(coreScores.ei) >= 4,
+    Math.abs(coreScores.ca) >= 4,
+    Math.abs(coreScores.lf) >= 4,
+    Math.abs(coreScores.ps) >= 4,
+  ].filter(Boolean).length;
+
+  const hitDimensions = 7 + strongCount * 2;   // 基础7维 + 每强维度加2维
+
+  // ==================== 十五维度评分 ====================
+  const dimensions = [
+    { id: "S1", name: "自尊自信", desc: "自信随天气波动，顺风能飞，逆风先缩。", score: coreScores.ei > 0 ? "M / 4分" : "L / 2分" },
+    { id: "S2", name: "自我清晰度", desc: "内心频道雪花较多，常在'我是谁'里循环缓存。", score: coreScores.ps > 0 ? "H / 5分" : "M / 3分" },
+    { id: "S3", name: "核心价值", desc: "很容易被目标、成长或某种重要信念推着往前。", score: coreScores.lf > 0 ? "H / 5分" : "M / 3分" },
+    { id: "E1", name: "依恋安全感", desc: "感情里警报器灵敏，已读不回都能脑补到大结局。", score: coreScores.lf > 0 ? "M / 4分" : "L / 2分" },
+    { id: "E2", name: "情感投入度", desc: "感情投入偏克制，心门不是没开，是门禁太严。", score: coreScores.ei > 0 ? "M / 3分" : "L / 3分" },
+    { id: "E3", name: "边界与依赖", desc: "空间感很重要，再爱也得留一块属于自己的地。", score: coreScores.ca > 0 ? "M / 4分" : "L / 3分" },
+    { id: "A1", name: "世界观倾向", desc: "既不天真也不彻底阴谋论，观望是你的本能。", score: coreScores.ca > 0 ? "M / 4分" : "L / 3分" },
+    { id: "A2", name: "规则与灵活度", desc: "秩序感较强，能按流程来就不爱即兴炸场。", score: coreScores.ps > 0 ? "H / 5分" : "L / 2分" },
+    { id: "A3", name: "人生意义感", desc: "做事更有方向，知道自己大概要往哪边走。", score: coreScores.lf > 0 ? "H / 5分" : "M / 3分" },
+    { id: "C1", name: "好奇心指数", desc: "看到新东西就两眼放光，探索欲拉满。", score: coreScores.ca > 0 ? "H / 5分" : "L / 2分" },
+    { id: "C2", name: "冒险精神", desc: "新路线、新玩具、新环境都想试试。", score: coreScores.ca > 0 ? "M / 4分" : "L / 3分" },
+    { id: "L1", name: "忠诚度", desc: "一旦认定你就很坚定，轻易不会换主人。", score: coreScores.lf > 0 ? "H / 5分" : "L / 2分" },
+    { id: "L2", name: "守护欲", desc: "你不开心时它会主动过来安慰。", score: coreScores.lf > 0 ? "M / 4分" : "L / 3分" },
+    { id: "P1", name: "顽皮指数", desc: "精力旺盛，喜欢突然搞事情。", score: coreScores.ps > 0 ? "M / 3分" : "L / 5分" },
+    { id: "P2", name: "生活节奏", desc: "是喜欢规律还是随性而为。", score: coreScores.ps > 0 ? "H / 5分" : "L / 2分" },
+  ];
 
   return (
     <motion.div 
-      initial={{ scale: 0.9, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      className="py-10 px-6 text-center min-h-screen cute-bg"
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="min-h-screen cute-bg py-8 px-4"
     >
-      {/* 漂浮装饰 */}
-      <motion.div 
-        animate={{ y: [0, -15, 0] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        className="absolute top-12 right-8 text-5xl opacity-30 pointer-events-none"
-      >
-        🐾
-      </motion.div>
+      <div className="max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
 
-      <motion.div 
-        animate={{ rotate: [0, 15, -15, 0] }}
-        transition={{ duration: 2.8, repeat: Infinity, repeatType: "reverse" }}
-        className="text-8xl mb-6"
-      >
-        🐾
-      </motion.div>
+        {/* 顶部标题 + 左右布局 */}
+        <div className="pt-10 pb-8 px-8 border-b border-gray-100">
+          <p className="text-sm text-gray-500 mb-2 text-center">你的宠物的宠格是</p>
 
-      {/* 标题区域 */}
-      <div className="mb-8">
-        <h1 className="text-5xl font-bold text-morandi-pink mb-2 tracking-tight">
-          {result.name}
-        </h1>
-        <p className="text-3xl font-medium text-gray-700 mb-1">
-          {result.english}
-        </p>
-        <p className="text-lg text-gray-500">
-          {typeKey} • {petType === 'dog' ? '狗狗专属' : petType === 'cat' ? '猫猫专属' : '通用类型'}
-        </p>
-      </div>
-
-      {/* 可爱宠物图片占位（低多边形风格） */}
-      <motion.div 
-        initial={{ scale: 0.8, rotate: -8 }}
-        animate={{ scale: 1, rotate: 0 }}
-        transition={{ type: "spring", bounce: 0.4 }}
-        className="mx-auto mb-10 w-48 h-48 bg-gradient-to-br from-morandi-pink/10 to-morandi-mint/10 rounded-3xl flex items-center justify-center border-4 border-white shadow-2xl"
-      >
-        <span className="text-8xl">🐶</span>   {/* 这里后续可替换为低多边形图片 */}
-      </motion.div>
-
-      {/* 幽默性格描述 */}
-      <Card className="p-8 mb-10 bg-white border-morandi-pink/20 text-left max-w-2xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
-          <Heart className="w-8 h-8 text-morandi-pink" />
-          <h3 className="text-2xl font-semibold text-gray-800">宝贝的真实性格</h3>
-        </div>
-        <p className="text-xl leading-relaxed text-gray-700">
-          {result.fullDesc}
-        </p>
-      </Card>
-
-      {/* 维度可视化 */}
-      <Card className="p-8 mb-10 bg-white border-morandi-pink/20 max-w-2xl mx-auto">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-8 flex items-center gap-2 justify-center">
-          <PawPrint className="w-6 h-6 text-morandi-pink" /> 
-          性格维度一览
-        </h3>
-        <div className="space-y-8">
-          {Object.entries(scores).map(([key, score]) => {
-            const percent = normalize(score);
-            const isPositive = score > 0;
-            const labels: any = {
-              ei: isPositive ? "外向活泼" : "内向安静",
-              ca: isPositive ? "好奇冒险" : "安逸随和",
-              lf: isPositive ? "忠诚守护" : "自由独立",
-              ps: isPositive ? "顽皮灵活" : "稳重规律"
-            };
-
-            return (
-              <div key={key} className="space-y-3">
-                <div className="flex justify-between text-sm font-medium">
-                  <span>{labels[key]}</span>
-                  <span className={isPositive ? "text-morandi-pink" : "text-morandi-sky"}>
-                    {score}
-                  </span>
-                </div>
-                <div className="h-4 bg-morandi-cream rounded-full overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: `${percent}%` }}
-                    transition={{ duration: 1.2, ease: "easeOut" }}
-                    className={`h-full rounded-full ${isPositive ? 'bg-morandi-pink' : 'bg-morandi-sky'}`}
-                  />
-                </div>
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            {/* 左侧文字 */}
+            <div className="flex-1 text-center md:text-left">
+              <h1 className="text-5xl font-bold text-morandi-pink mb-2">{result.name}</h1>
+              <p className="text-3xl font-medium text-gray-700 mb-4">{result.english}</p>
+              
+              <div className="inline-block bg-green-100 text-green-700 text-sm px-5 py-1.5 rounded-full">
+                匹配度 {matchPercent}% · 精准命中 {hitDimensions}/15 维
               </div>
-            );
-          })}
+            </div>
+
+            {/* 右侧图片 + nickname */}
+            <div className="flex flex-col items-center">
+              <motion.div 
+                initial={{ scale: 0.85, rotate: -8 }}
+                animate={{ scale: 1, rotate: 0 }}
+                className="w-52 h-52 bg-gradient-to-br from-morandi-pink/10 to-morandi-mint/10 rounded-3xl flex items-center justify-center border-8 border-white shadow-2xl mb-4"
+              >
+                <span className="text-9xl drop-shadow-md">🐾</span>
+              </motion.div>
+              {result.nickname && (
+                <p className="text-xl text-orange-600 font-medium italic text-center">
+                  「{result.nickname}」
+                </p>
+              )}
+            </div>
+          </div>
         </div>
-      </Card>
 
-      {/* 建议卡片（更活泼） */}
-      <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-2xl mx-auto">
-        <Card className="p-6 hover:shadow-md transition-shadow">
-          <h4 className="font-semibold text-morandi-pink mb-4">🏠 养它小贴士</h4>
-          <p className="text-gray-600 text-[15px] leading-relaxed">{result.suggestions}</p>
-        </Card>
-        <Card className="p-6 hover:shadow-md transition-shadow">
-          <h4 className="font-semibold text-morandi-pink mb-4">🧸 推荐玩具</h4>
-          <p className="text-gray-600 text-[15px] leading-relaxed">{result.toys}</p>
-        </Card>
-        <Card className="p-6 hover:shadow-md transition-shadow">
-          <h4 className="font-semibold text-morandi-pink mb-4">💡 相处秘诀</h4>
-          <p className="text-gray-600 text-[15px] leading-relaxed">{result.tips}</p>
-        </Card>
+        {/* 宠格描述 */}
+        <div className="px-8 py-10">
+          <Card className="p-8 bg-white border-0 shadow-none">
+            <div className="mb-6">
+              <span className="text-lg font-semibold text-gray-800">宠格：</span>
+              <span className="text-2xl font-bold text-morandi-pink ml-2">
+                {result.english}
+              </span>
+              <span className="text-2xl font-bold text-gray-700 ml-2">
+                ({result.name})
+              </span>
+            </div>
+            <p className="text-xl leading-relaxed text-gray-700">{result.fullDesc}</p>
+          </Card>
+
+          {/* 十五维度评分 - 边框加强版 */}
+          <div className="mt-12">
+            <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">十五维度评分</h3>
+            <div className="space-y-3">
+              {dimensions.map((dim) => (
+                <div 
+                  key={dim.id} 
+                  className="flex items-center justify-between bg-white border-2 border-gray-300 hover:border-morandi-pink rounded-2xl px-6 py-5 transition-all shadow-sm"
+                >
+                  <div className="flex-1 pr-4">
+                    <div className="font-medium text-gray-800">{dim.name}</div>
+                    <div className="text-xs text-gray-500 mt-1 leading-tight">{dim.desc}</div>
+                  </div>
+                  <div className="text-right font-semibold text-gray-600 whitespace-nowrap">
+                    {dim.score}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 小贴士 & 玩具 */}
+          <div className="grid md:grid-cols-2 gap-6 mt-12">
+            <Card className="p-6">
+              <h4 className="font-semibold text-morandi-pink mb-3">养它小贴士</h4>
+              <p className="text-gray-600 text-[15px] leading-relaxed">{result.suggestions}</p>
+            </Card>
+            <Card className="p-6">
+              <h4 className="font-semibold text-morandi-pink mb-3">推荐玩具</h4>
+              <p className="text-gray-600 text-[15px] leading-relaxed">{result.toys}</p>
+            </Card>
+          </div>
+
+          {result.tips && (
+            <Card className="p-6 mt-6">
+              <h4 className="font-semibold text-morandi-pink mb-3">相处小Tips</h4>
+              <p className="text-gray-600 text-[15px] leading-relaxed">{result.tips}</p>
+            </Card>
+          )}
+        </div>
+
+        {/* 友情提示 */}
+        <div className="mx-8 mb-12 text-center text-sm text-gray-500 leading-relaxed">
+          无论它是哪种宠格，它都是你最独特、最可爱的宝贝。<br />
+          享受和它相处的每一刻吧～
+        </div>
+
+        {/* 底部按钮 */}
+        <div className="flex gap-4 px-8 pb-10">
+          <Button 
+            onClick={() => { reset(); goToStep(0); }}
+            variant="outline"
+            className="flex-1 h-14 rounded-3xl text-lg"
+          >
+            重新测试
+          </Button>
+          <Button 
+            onClick={() => goToStep(4)}
+            className="flex-1 h-14 rounded-3xl bg-gradient-to-r from-morandi-pink to-morandi-mint text-white text-lg"
+          >
+            <Share2 className="mr-2 w-5 h-5" />
+            分享我的宠格
+          </Button>
+        </div>
       </div>
-
-      {/* 操作按钮 */}
-      <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-        <Button 
-          onClick={() => goToStep(4)} 
-          className="flex-1 h-16 text-xl rounded-3xl bg-gradient-to-r from-morandi-pink to-morandi-mint flex items-center justify-center gap-3"
-        >
-          <Share2 className="w-6 h-6" />
-          生成分享海报
-        </Button>
-        <Button 
-          onClick={() => { useQuizStore.getState().reset(); goToStep(0); }} 
-          variant="outline"
-          className="flex-1 h-16 text-xl rounded-3xl"
-        >
-          🔄 再测一次
-        </Button>
-      </div>
-
-      <p className="text-xs text-gray-400 mt-12">
-        愿你和宝贝的每一天都充满快乐与温暖 🐾
-      </p>
     </motion.div>
   );
 }

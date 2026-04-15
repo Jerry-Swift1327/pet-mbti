@@ -14,11 +14,11 @@ export default function Share() {
     if (!posterRef.current) return;
     const canvas = await html2canvas(posterRef.current, { 
       backgroundColor: '#f8f0e0',
-      scale: 2.5,
+      scale: 2.8,
       logging: false 
     });
     const link = document.createElement('a');
-    link.download = `我的宠格-${result.name}.png`;
+    link.download = `我的宠格-${result.name || '未知'}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
   };
@@ -37,9 +37,17 @@ export default function Share() {
           <PawPrint className="w-24 h-24 text-morandi-pink drop-shadow-md" />
         </div>
         
-        <h2 className="text-5xl font-bold mb-6 text-morandi-pink tracking-wider">我的宠格是</h2>
-        <div className="text-6xl font-bold mb-10 text-gray-800 leading-none">{result.name}</div>
+        <h2 className="text-5xl font-bold mb-4 text-morandi-pink tracking-wider">我的宠格是</h2>
         
+        <div className="text-6xl font-bold mb-2 text-gray-800 leading-none">{result.name}</div>
+        <div className="text-3xl font-medium text-gray-700 mb-8">{result.english}</div>
+        
+        {result.nickname && (
+          <p className="text-2xl text-orange-600 font-medium italic mb-10">
+            「{result.nickname}」
+          </p>
+        )}
+
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 mb-10 text-left border border-morandi-pink/30">
           <p className="text-xl leading-relaxed text-gray-700">{result.fullDesc}</p>
         </div>
