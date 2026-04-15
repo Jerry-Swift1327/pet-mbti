@@ -50,7 +50,7 @@ export default function Quiz() {
         </div>
 
         {/* 题目列表区域 */}
-        <div className="px-6 pt-8 pb-32 space-y-10">
+        <div className="px-6 pt-6 pb-32 space-y-6">
           {questions.map((q) => {
             const selected = answers[q.id];
 
@@ -59,26 +59,26 @@ export default function Quiz() {
                 key={q.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white border-2 border-gray-300 rounded-2xl p-6 shadow-sm"
+                className="bg-white border-2 border-gray-500 rounded-2xl p-5 shadow-sm"
               >
-                <div className="mb-5">
-                  <span className="inline-block px-3 py-1.5 bg-orange-100 text-orange-600 text-sm font-medium rounded-full">
+                <div className="mb-3">
+                  <span className="inline-block px-2 py-1.5 bg-orange-100 text-orange-500 text-sm font-medium rounded-full">
                     第 {q.id} 题
                   </span>
                 </div>
 
-                <h2 className="text-2xl font-medium leading-relaxed text-gray-800 mb-8">
+                <h2 className="text font-bold leading-relaxed mb-2">
                   {q.text}
                 </h2>
 
-                <div className="space-y-5">
+                <div className="space-y-3">
                   {q.options.map((optionText, index) => (
                     <label
                       key={index}
-                      className={`flex items-start gap-4 p-6 rounded-2xl border-2 transition-all cursor-pointer
+                      className={`flex items-start gap-3 p-3 rounded-2xl border-2 transition-all cursor-pointer
                         ${selected === index 
                           ? 'border-orange-500 bg-orange-50 shadow-md' 
-                          : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                          : 'border-gray-350 hover:border-gray-400 hover:bg-gray-200'
                         }`}
                     >
                       <input
@@ -86,9 +86,9 @@ export default function Quiz() {
                         name={`q-${q.id}`}
                         checked={selected === index}
                         onChange={() => handleOptionSelect(q.id, index)}
-                        className="mt-1.5 accent-orange-500 w-5 h-5"
+                        className="mt-1.5 accent-orange-500 w-4 h-5"
                       />
-                      <span className="font-medium text-gray-700 flex-1 leading-relaxed text-[17px]">
+                      <span className="flex-2 leading-relaxed text-[15px]">
                         {optionText}
                       </span>
                     </label>
