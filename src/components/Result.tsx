@@ -3,14 +3,7 @@ import { useQuizStore } from '@/stores/useQuizStore';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { motion } from 'framer-motion';
-import { PawPrint, Sparkles, Heart} from 'lucide-react';
-
-const dimensionLabels = {
-  ei: { name: "能量来源", positive: "外向活泼 E", negative: "内向安静 I" },
-  ca: { name: "探索欲", positive: "好奇冒险 C", negative: "安逸随和 A" },
-  lf: { name: "情感倾向", positive: "忠诚守护 L", negative: "自由独立 F" },
-  ps: { name: "生活态度", positive: "顽皮灵活 P", negative: "稳重规律 S" },
-};
+import { PawPrint, Sparkles, Heart, Share2 } from 'lucide-react';
 
 export default function Result() {
   const { 
@@ -25,72 +18,88 @@ export default function Result() {
   const typeKey = getPersonalityType();
   const scores = calculateScores();
 
-  // 将分数映射到 0-100 的可视化比例（基础范围 -12 到 +12）
   const normalize = (score: number) => Math.min(Math.max(((score + 12) / 24) * 100, 10), 90);
 
   return (
     <motion.div 
-      initial={{ scale: 0.92, opacity: 0 }}
+      initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      className="py-10 px-8 text-center relative overflow-hidden"
+      className="py-10 px-6 text-center min-h-screen cute-bg"
     >
       {/* 漂浮装饰 */}
       <motion.div 
         animate={{ y: [0, -15, 0] }}
         transition={{ duration: 3, repeat: Infinity }}
-        className="absolute top-8 right-8 text-4xl opacity-30"
+        className="absolute top-12 right-8 text-5xl opacity-30 pointer-events-none"
       >
         🐾
-      </motion.div>
-      <motion.div 
-        animate={{ rotate: [0, 20, -20, 0] }}
-        transition={{ duration: 4, repeat: Infinity }}
-        className="absolute bottom-12 left-8 text-5xl opacity-20"
-      >
-        🦴
       </motion.div>
 
       <motion.div 
         animate={{ rotate: [0, 15, -15, 0] }}
-        transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse" }}
-        className="text-8xl mb-6 inline-block"
+        transition={{ duration: 2.8, repeat: Infinity, repeatType: "reverse" }}
+        className="text-8xl mb-6"
       >
         🐾
       </motion.div>
-      
-      <h1 className="text-5xl font-bold text-morandi-pink mb-3 tracking-tight">{result.name}</h1>
-      <p className="text-xl text-gray-600 mb-8">
-        {typeKey} • {petType === 'dog' ? '🐶 狗狗专属' : petType === 'cat' ? '🐱 猫猫专属' : '🐹 通用类型'}
-      </p>
 
-      {/* 详细性格描述 */}
-      <Card className="p-10 mb-10 bg-gradient-to-br from-morandi-cream to-white border-morandi-pink/30 text-left">
+      {/* 标题区域 */}
+      <div className="mb-8">
+        <h1 className="text-5xl font-bold text-morandi-pink mb-2 tracking-tight">
+          {result.name}
+        </h1>
+        <p className="text-3xl font-medium text-gray-700 mb-1">
+          {result.english}
+        </p>
+        <p className="text-lg text-gray-500">
+          {typeKey} • {petType === 'dog' ? '狗狗专属' : petType === 'cat' ? '猫猫专属' : '通用类型'}
+        </p>
+      </div>
+
+      {/* 可爱宠物图片占位（低多边形风格） */}
+      <motion.div 
+        initial={{ scale: 0.8, rotate: -8 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ type: "spring", bounce: 0.4 }}
+        className="mx-auto mb-10 w-48 h-48 bg-gradient-to-br from-morandi-pink/10 to-morandi-mint/10 rounded-3xl flex items-center justify-center border-4 border-white shadow-2xl"
+      >
+        <span className="text-8xl">🐶</span>   {/* 这里后续可替换为低多边形图片 */}
+      </motion.div>
+
+      {/* 幽默性格描述 */}
+      <Card className="p-8 mb-10 bg-white border-morandi-pink/20 text-left max-w-2xl mx-auto">
         <div className="flex items-center gap-3 mb-6">
           <Heart className="w-8 h-8 text-morandi-pink" />
-          <h3 className="text-2xl font-semibold text-gray-800">性格详解</h3>
+          <h3 className="text-2xl font-semibold text-gray-800">宝贝的真实性格</h3>
         </div>
-        <p className="text-xl leading-relaxed text-gray-700 whitespace-pre-line">
+        <p className="text-xl leading-relaxed text-gray-700">
           {result.fullDesc}
         </p>
       </Card>
 
-      {/* 维度可视化柱状图 */}
-      <Card className="p-8 mb-10 bg-white border-morandi-pink/20">
+      {/* 维度可视化 */}
+      <Card className="p-8 mb-10 bg-white border-morandi-pink/20 max-w-2xl mx-auto">
         <h3 className="text-2xl font-semibold text-gray-800 mb-8 flex items-center gap-2 justify-center">
-          <PawPrint className="w-6 h-6 text-morandi-pink" /> 性格维度分析
+          <PawPrint className="w-6 h-6 text-morandi-pink" /> 
+          性格维度一览
         </h3>
         <div className="space-y-8">
           {Object.entries(scores).map(([key, score]) => {
-            const dim = dimensionLabels[key as keyof typeof dimensionLabels];
             const percent = normalize(score);
             const isPositive = score > 0;
-            
+            const labels: any = {
+              ei: isPositive ? "外向活泼" : "内向安静",
+              ca: isPositive ? "好奇冒险" : "安逸随和",
+              lf: isPositive ? "忠诚守护" : "自由独立",
+              ps: isPositive ? "顽皮灵活" : "稳重规律"
+            };
+
             return (
-              <div key={key} className="space-y-2">
+              <div key={key} className="space-y-3">
                 <div className="flex justify-between text-sm font-medium">
-                  <span>{dim.name}</span>
+                  <span>{labels[key]}</span>
                   <span className={isPositive ? "text-morandi-pink" : "text-morandi-sky"}>
-                    {isPositive ? dim.positive : dim.negative} ({score})
+                    {score}
                   </span>
                 </div>
                 <div className="h-4 bg-morandi-cream rounded-full overflow-hidden">
@@ -107,43 +116,43 @@ export default function Result() {
         </div>
       </Card>
 
-      {/* 建议卡片 */}
-      <div className="grid md:grid-cols-3 gap-6 mb-12">
+      {/* 建议卡片（更活泼） */}
+      <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-2xl mx-auto">
         <Card className="p-6 hover:shadow-md transition-shadow">
-          <h4 className="font-semibold text-morandi-pink mb-4 flex items-center gap-2">
-            🏠 生活建议
-          </h4>
+          <h4 className="font-semibold text-morandi-pink mb-4">🏠 养它小贴士</h4>
           <p className="text-gray-600 text-[15px] leading-relaxed">{result.suggestions}</p>
         </Card>
         <Card className="p-6 hover:shadow-md transition-shadow">
-          <h4 className="font-semibold text-morandi-pink mb-4 flex items-center gap-2">
-            🧸 推荐玩具
-          </h4>
+          <h4 className="font-semibold text-morandi-pink mb-4">🧸 推荐玩具</h4>
           <p className="text-gray-600 text-[15px] leading-relaxed">{result.toys}</p>
         </Card>
         <Card className="p-6 hover:shadow-md transition-shadow">
-          <h4 className="font-semibold text-morandi-pink mb-4 flex items-center gap-2">
-            💡 相处Tips
-          </h4>
+          <h4 className="font-semibold text-morandi-pink mb-4">💡 相处秘诀</h4>
           <p className="text-gray-600 text-[15px] leading-relaxed">{result.tips}</p>
         </Card>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4">
+      {/* 操作按钮 */}
+      <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
         <Button 
           onClick={() => goToStep(4)} 
-          className="flex-1 h-16 text-xl rounded-3xl bg-morandi-pink hover:bg-morandi-peach flex items-center justify-center gap-3 text-white shadow-soft"
+          className="flex-1 h-16 text-xl rounded-3xl bg-gradient-to-r from-morandi-pink to-morandi-mint flex items-center justify-center gap-3"
         >
-          生成分享海报 <Sparkles className="w-6 h-6" />
+          <Share2 className="w-6 h-6" />
+          生成分享海报
         </Button>
         <Button 
           onClick={() => { useQuizStore.getState().reset(); goToStep(0); }} 
           variant="outline"
           className="flex-1 h-16 text-xl rounded-3xl"
         >
-          🔄 重新测试
+          🔄 再测一次
         </Button>
       </div>
+
+      <p className="text-xs text-gray-400 mt-12">
+        愿你和宝贝的每一天都充满快乐与温暖 🐾
+      </p>
     </motion.div>
   );
 }
