@@ -88,7 +88,7 @@ export default function Quiz() {
                   {q.options.map((optionText: string, optionIndex: number) => (
                     <label
                       key={optionIndex}
-                      className={`flex items-start gap-3 p-2.5 rounded-2xl border-2 transition-all cursor-pointer
+                      className={`flex items-start gap-2.5 p-2.5 rounded-2xl border-2 transition-all cursor-pointer
                         ${selected === optionIndex 
                           ? 'border-orange-500 bg-orange-50 shadow-md' 
                           : 'border-gray-350 hover:border-gray-400 hover:bg-gray-200'

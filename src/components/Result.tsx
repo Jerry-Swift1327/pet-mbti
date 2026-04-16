@@ -117,8 +117,8 @@ export default function Result() {
 
         {/* 宠格描述 */}
         <div className="px-8 py-10">
-          <Card className="p-8 bg-white border-0 shadow-none">
-            <div className="mb-6">
+          <Card className="p-8 bg-gradient-to-br from-orange-50 to-pink-50 border-0 shadow-none">
+            <div className="mb-2">
               <span className="text-2xl font-semibold text-gray-700">宠格：</span>
               <span className="text-2xl font-bold text-gray-700 ml-2">
                 {result.english}
@@ -131,50 +131,39 @@ export default function Result() {
           </Card>
 
           {/* 十五维度评分 */}
-          <div className="mt-12">
-            <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">十五维度评分</h3>
+          <Card className="mt-10 p-6 bg-gradient-to-br from-orange-50 to-pink-50 border border-green-300">
+            <h3 className="text-2xl font-bold text-gray-800 mb-2 text-left">十五维度评分</h3>
+            
             <div className="space-y-3">
-              {dimensions.map((dim) => (
+              {dimensions.map((dim, index) => (
                 <div 
-                  key={dim.id} 
-                  className="flex items-center justify-between bg-white border-2 border-gray-300 hover:border-morandi-pink rounded-2xl px-6 py-5 transition-all shadow-sm"
+                  key={index}
+                  className="flex flex-col md:flex-row md:items-center justify-between bg-gray-50 border border-green-800 rounded-2xl px-5 py-2 transition-all"
                 >
-                  <div className="flex-1 pr-4">
-                    <div className="font-medium text-gray-800">{dim.name}</div>
-                    <div className="text-xs text-gray-500 mt-1 leading-tight">{dim.desc}</div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-gray-800 text-lg mb-1">{dim.name}</div>
+                    <div className="text-sm text-gray-600 leading-relaxed">{dim.desc}</div>
                   </div>
-                  <div className="text-right font-semibold text-gray-600 whitespace-nowrap">
+                  <div className="mt-3 md:mt-0 text-right font-bold text-orange-600 text-lg whitespace-nowrap">
                     {dim.score}
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
 
-          {/* 小贴士 & 玩具 */}
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
-            <Card className="p-6">
-              <h4 className="font-semibold text-gray-700 mb-3">养它小贴士</h4>
-              <p className="text-gray-600 text-[15px] leading-relaxed">{result.suggestions}</p>
-            </Card>
-            <Card className="p-6">
-              <h4 className="font-semibold text-gray-700 mb-3">推荐玩具</h4>
-              <p className="text-gray-600 text-[15px] leading-relaxed">{result.toys}</p>
-            </Card>
-          </div>
+        {/* 在这可补回tips + 玩具代码 */}
 
-          {result.tips && (
-            <Card className="p-6 mt-6">
-              <h4 className="font-semibold text-gray-700 mb-3">相处小Tips</h4>
-              <p className="text-gray-600 text-[15px] leading-relaxed">{result.tips}</p>
-            </Card>
-          )}
         </div>
 
         {/* 友情提示 */}
-        <div className="mx-8 mb-12 text-center text-sm text-gray-600 leading-relaxed">
-          无论它是哪种宠格，它都是你最独特、最可爱的宝贝。<br />
-          享受和它相处的每一刻吧～
+        <div className="mx-8 md:mx-15 mb-10">
+          <Card className="p-5 bg-gradient-to-br from-orange-50 to-pink-50 border-3 border-orange-100">
+            <h4 className="font-bold text-xl text-gray-800">友情提示</h4>
+            <p className="text-gray-11000 leading-relaxed">
+              无论它是哪种宠格，它都是你最独特、最可爱的宝贝。享受和它相处的每一刻吧～
+            </p>
+          </Card>
         </div>
 
         {/* 底部按钮 */}
