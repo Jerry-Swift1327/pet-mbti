@@ -7,38 +7,51 @@ import { motion } from 'framer-motion';
 export default function Home() {
   const { goToStep } = useQuizStore();
 
+  // 预设位置，避免重叠
+  const floatingTexts = [
+    { text: "CLEAN", left: "10%", top: "5%" },
+    { text: "BOSS", left: "75%", top: "5%" },
+    { text: "SEXY", left: "8%", top: "15%" },
+    { text: "SOUL", left: "72%", top: "15%" },
+    { text: "GOGO", left: "3%", top: "40%" },
+    { text: "MONK", left: "65%", top: "65%" },
+    { text: "FOOD", left: "10%", top: "78%" },
+    { text: "HUGS", left: "75%", top: "82%" },
+    { text: "WOC", left: "10%", top: "28%" },
+    { text: "LUCK", left: "78%", top: "28%" },
+    { text: "OKBJ", left: "5%", top: "68%" },
+    { text: "CTRL", left: "75%", top: "48%" },
+  ];
+
   return (
     <div className="min-w-screen cute-bg flex items-center justify-center px-5 py-5 relative overflow-hidden">
-      
-      {/* 背景漂浮的宠格类型（包围主卡片） */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {["CLEAN", "BOSS", "SEXY", "SOUL", "GOGO", "MONK", "FOOD", "HUGS", "WOC", "LUCK", "OKBJ", "CTRL"].map((type, i) => (
+  
+      {/* 主内容卡片 */}
+      <div className="relative max-h-full w-full bg-white/75 backdrop-blur-md rounded-3xl shadow-2xl p-10 md:p-10 text-center border-5 border-white/65">
+
+       {/* 漂浮宠格文字 - 固定位置，避免重叠 */}
+        {floatingTexts.map((item, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0.15 }}
             animate={{ 
-              opacity: [0.15, 0.35, 0.15],
-              y: [0, -15, 0],
-              x: [0, 8, 0]
+              opacity: [0.25, 0.45, 0.25],
+              y: [0, -8, 0]
             }}
             transition={{ 
-              duration: 12 + i * 0.8, 
+              duration: 10 + (i % 4) * 2, 
               repeat: Infinity,
-              delay: i * 0.3 
+              delay: i * 0.4 
             }}
-            className="absolute text-5xl md:text-6xl font-black tracking-widest text-orange-300/70 select-none"
+            className="absolute text-3xl md:text-3xl font-black tracking-widest text-orange-300/85 pointer-events-none select-none z-0"
             style={{
-              left: `${10 + (i % 6) * 14}%`,
-              top: `${15 + Math.floor(i / 6) * 28}%`,
+              left: item.left,
+              top: item.top,
             }}
           >
-            {type}
+            {item.text}
           </motion.div>
         ))}
-      </div>
-
-      {/* 主内容卡片 */}
-      <div className="relative max-h-full w-full bg-white/75 backdrop-blur-md rounded-3xl shadow-2xl p-10 md:p-10 text-center border-5 border-white/65">
 
         {/* 爪印动画 */}
         <motion.div 
