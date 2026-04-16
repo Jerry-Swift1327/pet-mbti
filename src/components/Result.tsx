@@ -70,19 +70,19 @@ export default function Result() {
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="min-h-screen cute-bg py-8 px-4"
+      className="min-h-screen cute-bg"
     >
-      <div className="max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <div className="max-w-full mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
 
         {/* 顶部标题 + 左右布局 */}
-        <div className="pt-10 pb-8 px-8 border-b border-gray-100">
-          <p className="text-sm text-gray-500 mb-2 text-center">你的宠物的宠格是</p>
+        <div className="pt-7 pb-0 px-10">
+          <p className="text-3xl text-gray-600 mb-3 text-center font-bold">你的宠物的宠格是</p>
 
           <div className="flex flex-col md:flex-row gap-8 items-center">
             {/* 左侧文字 */}
             <div className="flex-1 text-center md:text-left">
-              <h1 className="text-5xl font-bold text-morandi-pink mb-2">{result.name}</h1>
-              <p className="text-3xl font-medium text-gray-700 mb-4">{result.english}</p>
+              <h1 className="text-5xl font-bold text-orange-500 mb-2">{result.name}</h1>
+              <p className="text-3xl font-bold text-gray-700 mb-4">{result.english}</p>
               
               <div className="inline-block bg-green-100 text-green-700 text-sm px-5 py-1.5 rounded-full">
                 匹配度 {matchPercent}% · 精准命中 {hitDimensions}/15 维
@@ -94,7 +94,7 @@ export default function Result() {
               <motion.div 
                 initial={{ scale: 0.85, rotate: -8 }}
                 animate={{ scale: 1, rotate: 0 }}
-                className="w-52 h-52 bg-gradient-to-br from-morandi-pink/10 to-morandi-mint/10 rounded-3xl flex items-center justify-center border-8 border-white shadow-2xl mb-4 overflow-hidden"
+                className="w-52 h-52 bg-gradient-to-br from-morandi-pink/10 to-morandi-mint/10 rounded-2xl flex items-center justify-center border-8 border-pink shadow-2xl mb-5 overflow-hidden"
               >
                 <img 
                   src={`/images/pets/${mappedKey}.png`} 
@@ -119,8 +119,8 @@ export default function Result() {
         <div className="px-8 py-10">
           <Card className="p-8 bg-white border-0 shadow-none">
             <div className="mb-6">
-              <span className="text-lg font-semibold text-gray-800">宠格：</span>
-              <span className="text-2xl font-bold text-morandi-pink ml-2">
+              <span className="text-2xl font-semibold text-gray-700">宠格：</span>
+              <span className="text-2xl font-bold text-gray-700 ml-2">
                 {result.english}
               </span>
               <span className="text-2xl font-bold text-gray-700 ml-2">
@@ -154,18 +154,18 @@ export default function Result() {
           {/* 小贴士 & 玩具 */}
           <div className="grid md:grid-cols-2 gap-6 mt-12">
             <Card className="p-6">
-              <h4 className="font-semibold text-morandi-pink mb-3">养它小贴士</h4>
+              <h4 className="font-semibold text-gray-700 mb-3">养它小贴士</h4>
               <p className="text-gray-600 text-[15px] leading-relaxed">{result.suggestions}</p>
             </Card>
             <Card className="p-6">
-              <h4 className="font-semibold text-morandi-pink mb-3">推荐玩具</h4>
+              <h4 className="font-semibold text-gray-700 mb-3">推荐玩具</h4>
               <p className="text-gray-600 text-[15px] leading-relaxed">{result.toys}</p>
             </Card>
           </div>
 
           {result.tips && (
             <Card className="p-6 mt-6">
-              <h4 className="font-semibold text-morandi-pink mb-3">相处小Tips</h4>
+              <h4 className="font-semibold text-gray-700 mb-3">相处小Tips</h4>
               <p className="text-gray-600 text-[15px] leading-relaxed">{result.tips}</p>
             </Card>
           )}
@@ -180,7 +180,7 @@ export default function Result() {
         {/* 底部按钮 */}
         <div className="flex gap-4 px-8 pb-10">
           <Button 
-            onClick={() => { reset(); goToStep(0); }}
+            onClick={() => { reset(); goToStep(2); }}
             variant="outline"
             className="flex-1 h-14 rounded-3xl text-lg"
           >
