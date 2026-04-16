@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 
 export default function Result() {
-  const { goToStep, reset, getPersonalityType, calculateScores } = useQuizStore();
+  const { goToStep, getPersonalityType, calculateScores } = useQuizStore();
 
   const typeKey = getPersonalityType() || "UNKNOWN";
   const coreScores = calculateScores(); // ← 必须调用！
