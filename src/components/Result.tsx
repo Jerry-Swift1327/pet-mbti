@@ -193,9 +193,9 @@ export default function Result() {
             variant="outline"
             className="flex-1 h-14 rounded-3xl text-lg font-bold 
                border-2 border-orange-400 text-orange-600 
-               hover:bg-orange-50 hover:border-orange-500 
+               hover:bg-orange-300 hover:border-orange-500 
                active:bg-orange-100 transition-all duration-200
-               shadow-sm hover:shadow-md"
+               shadow-sm hover:shadow-md bg-green-200"
           >
             🐾 再测一次
           </Button>
