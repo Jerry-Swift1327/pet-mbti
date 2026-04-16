@@ -13,13 +13,13 @@ export default function Home() {
     { text: "BOSS", left: "75%", top: "5%" },
     { text: "SEXY", left: "8%", top: "15%" },
     { text: "SOUL", left: "72%", top: "15%" },
-    { text: "GOGO", left: "3%", top: "40%" },
+    { text: "GOGO", left: "3%", top: "45%" },
     { text: "MONK", left: "65%", top: "65%" },
-    { text: "FOOD", left: "10%", top: "78%" },
+    { text: "FOOD", left: "8%", top: "82%" },
     { text: "HUGS", left: "75%", top: "82%" },
     { text: "WOC", left: "10%", top: "28%" },
     { text: "LUCK", left: "78%", top: "28%" },
-    { text: "OKBJ", left: "5%", top: "68%" },
+    { text: "OKBJ", left: "5%", top: "65%" },
     { text: "CTRL", left: "75%", top: "48%" },
   ];
 
