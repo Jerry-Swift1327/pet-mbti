@@ -45,7 +45,7 @@ export default function Quiz() {
     <div className="min-h-screen cute-bg">
 
       {/* Quiz 主容器 */}
-      <div className="max-w-[96%] md:max-w-5xl mx-auto bg-white min-h-screen shadow-sm">
+      <div className="max-w-full md:max-w-5xl mx-auto bg-white min-h-screen shadow-sm">
 
         {/* 顶部固定进度区域 */}
         <div className="sticky top-0 z-50 bg-white border-b px-4 md:px-8 py-5">
