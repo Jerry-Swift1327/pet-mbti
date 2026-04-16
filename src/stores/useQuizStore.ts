@@ -19,6 +19,7 @@ interface QuizState {
   getPersonalityType: () => string;
   getResult: () => any;
   reset: () => void;
+  resetAnswers:() => void;
 }
 
 export const useQuizStore = create<QuizState>((set, get) => ({
@@ -99,5 +100,7 @@ export const useQuizStore = create<QuizState>((set, get) => ({
     petType: null,
     currentQuestionIndex: 0,
     answers: {}
-  })
+  }),
+
+  resetAnswers:() => set({answers:{}}),
 }));

@@ -13,6 +13,7 @@ export default function Quiz() {
 
   // 随机打乱题目顺序（每次进入Quiz页面都会重新打乱）
   useEffect(() => {
+    useQuizStore.getState().resetAnswers();
     const shuffled = [...questionsData].sort(() => Math.random() - 0.5);
     setShuffledQuestions(shuffled);
   }, []);
@@ -24,9 +25,15 @@ export default function Quiz() {
   const handleSubmit = () => {
     if (!isComplete) return;
     setSubmitted(true);
+
     setTimeout(() => {
       goToStep(3);
-    }, 600);
+      window.scrollTo({
+        top:0,
+        behavior:'instant'
+      });
+    }, 400)
+    
   };
 
   const handleOptionSelect = (questionId: number, optionIndex: number) => {

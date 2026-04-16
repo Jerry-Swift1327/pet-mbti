@@ -180,7 +180,16 @@ export default function Result() {
         {/* 底部按钮 */}
         <div className="flex gap-4 px-8 pb-10">
           <Button 
-            onClick={() => { reset(); goToStep(2); }}
+            onClick={() => { 
+              useQuizStore.getState().resetAnswers(); 
+              goToStep(2); 
+              setTimeout(() => {
+                window.scrollTo({
+                  top:0,
+                  behavior:'instant'
+                });
+              },80);
+            }}
             variant="outline"
             className="flex-1 h-14 rounded-3xl text-lg font-bold 
                border-2 border-orange-400 text-orange-600 
