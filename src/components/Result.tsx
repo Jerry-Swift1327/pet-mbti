@@ -141,7 +141,7 @@ export default function Result() {
                   className="flex flex-col md:flex-row md:items-center justify-between bg-gray-50 border border-green-800 rounded-2xl px-5 py-2 transition-all"
                 >
                   <div className="flex justify-between items-baseline mb-2">
-                    <div className="font-semibold text-gray-800 text-lg">{dim.name}</div>
+                    <div className="font-bold text-gray-800 text-lg">{dim.name}</div>
                     <div className="font-bold text-orange-600 text-lg whitespace-nowrap">
                       {dim.score}
                     </div>
