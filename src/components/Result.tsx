@@ -172,7 +172,7 @@ export default function Result() {
         </div>
 
         {/* 友情提示 */}
-        <div className="mx-8 mb-12 text-center text-sm text-gray-500 leading-relaxed">
+        <div className="mx-8 mb-12 text-center text-sm text-gray-600 leading-relaxed">
           无论它是哪种宠格，它都是你最独特、最可爱的宝贝。<br />
           享受和它相处的每一刻吧～
         </div>
@@ -182,9 +182,13 @@ export default function Result() {
           <Button 
             onClick={() => { reset(); goToStep(2); }}
             variant="outline"
-            className="flex-1 h-14 rounded-3xl text-lg"
+            className="flex-1 h-14 rounded-3xl text-lg font-bold 
+               border-2 border-orange-400 text-orange-600 
+               hover:bg-orange-50 hover:border-orange-500 
+               active:bg-orange-100 transition-all duration-200
+               shadow-sm hover:shadow-md"
           >
-            重新测试
+            🐾 再测一次
           </Button>
         </div>
       </div>
