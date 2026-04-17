@@ -4,43 +4,9 @@ import resultsData from '@/data/results.json';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-
-import cleanImg from '/images/pets/CLEAN.png';
-import bossImg from '/images/pets/BOSS.png';
-import monkImg from '/images/pets/MONK.png';
-import soulImg from '/images/pets/SOUL.png';
-import okbjImg from '/images/pets/OKBJ.png';
-import sexyImg from '/images/pets/SEXY.png';
-import luckImg from '/images/pets/LUCK.png';
-import hugsImg from '/images/pets/HUGS.png';
-import foodImg from '/images/pets/FOOD.png';
-import gogoImg from '/images/pets/GOGO.png';
-import wocImg from '/images/pets/WOC.png';
-import smallzImg from '/images/pets/SMALLZ.png';
-import ctrlImg from '/images/pets/CTRL.png';
-import thankImg from '/images/pets/THANK.png';
-import atmImg from '/images/pets/ATM.png';
-import loverImg from '/images/pets/LOVER.png';
-
-const imageMap: Record<string, string> = {
-  CLEAN: cleanImg,
-  BOSS: bossImg,
-  MONK: monkImg,
-  SOUL: soulImg,
-  OKBJ: okbjImg,
-  SEXY: sexyImg,
-  LUCK: luckImg,
-  HUGS: hugsImg,
-  FOOD: foodImg,
-  GOGO: gogoImg,
-  WOC: wocImg,
-  SMALLZ: smallzImg,
-  CTRL: ctrlImg,
-  THANK: thankImg,
-  ATM: atmImg,
-  LOVER: loverImg,
-};
+import { PawPrint } from 'lucide-react';
+import { petImages } from '@/utils/preloadImages';
+import { useState } from 'react';
 
 export default function Result() {
   const { goToStep, getPersonalityType, calculateScores } = useQuizStore();
@@ -56,7 +22,8 @@ export default function Result() {
   };
 
   const mappedKey = keyMapping[typeKey] || typeKey;
-  const imageSrc = imageMap[mappedKey]
+  const imageSrc = (petImages as any)[mappedKey];
+  const [imageError, setImageError] = useState(false);
 
   const result = (resultsData as any)[mappedKey] || {
     name: "未知类型",
@@ -67,18 +34,6 @@ export default function Result() {
     toys: "暂无推荐",
     tips: "暂无Tips"
   };
-
-  // ==================== 图片预加载 ====================
-  const [, setImageLoaded] = useState(false);
-
-  useEffect(() => {
-    if(!imageSrc) return;
-    const img = new Image();
-    img.src = imageSrc;
-
-    img.onload = () => setImageLoaded(true);
-    img.onerror = () => setImageLoaded(true);
-  }, [imageSrc]);
 
   // ==================== 动态匹配度 ====================
   const absTotal = Math.abs(coreScores.ei) + Math.abs(coreScores.ca) + 
@@ -145,18 +100,22 @@ export default function Result() {
                 animate={{ scale: 1, rotate: 0 }}
                 className="w-52 h-52 bg-gradient-to-br from-morandi-pink/10 to-morandi-mint/10 rounded-2xl flex items-center justify-center border-8 border-pink shadow-2xl mb-5 overflow-hidden"
               >
-                <img 
-                  src={imageSrc} 
-                  alt={result.name}
-                  loading = 'eager'
-                  fetchPriority = 'high'
-                  decoding ='sync'
-                  className = "w-full h-full object-contain"
-                  onLoad={() => {}}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/images/pets/placeholder.png';
-                  }}
-                />
+                {!imageError ? (
+                  <img 
+                    src={imageSrc} 
+                    alt={result.name}
+                    loading = 'eager'
+                    fetchPriority = 'high'
+                    decoding ='sync'
+                    className = "w-full h-full object-contain"
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-orange-400">
+                    <PawPrint size={90} strokeWidth={1.5} />
+                    <span className="mt-3 text-sm text-gray-400">图片加载失败</span>
+                  </div>
+                )}   
               </motion.div>
               
               {result.nickname && (

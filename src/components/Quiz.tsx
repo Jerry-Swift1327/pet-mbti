@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { preloadAllPetImags } from '@/utils/preloadImages';
 
 export default function Quiz() {
   const { answers, answerQuestion, goToStep } = useQuizStore();
@@ -14,6 +15,7 @@ export default function Quiz() {
   // 随机打乱题目顺序（每次进入Quiz页面都会重新打乱）
   useEffect(() => {
     useQuizStore.getState().resetAnswers();
+    preloadAllPetImags();
     const shuffled = [...questionsData].sort(() => Math.random() - 0.5);
     setShuffledQuestions(shuffled);
   }, []);
