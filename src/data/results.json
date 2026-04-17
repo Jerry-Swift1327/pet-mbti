@@ -6,7 +6,25 @@
     "fullDesc": "恭喜！你家宝贝是洁癖星人。它走路都挑干净的地方踩，碗里多一粒米都要抗议。沙发必须是它的专属领地，别人坐过它要重新整理三遍。生活信条：这个世界可以乱，但我的毛不能乱。",
     "suggestions": "每天给它准备干净的窝和水盆，它会非常开心。不要随便摸它刚洗干净的毛。",
     "toys": "自动清洁玩具、静音吸尘器模型、干净毛绒垫",
-    "tips": "它嫌弃你的时候别生气，它只是爱干净而已。"
+    "tips": "它嫌弃你的时候别生气，它只是爱干净而已。",
+    "vector": { "ei": -6, "ca": -8, "lf": 4, "ps": 10 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.6 },
+      "S2": { "main": "ps", "weight": 0.8 },
+      "S3": { "main": "lf", "weight": 0.4 },
+      "E1": { "main": "lf", "weight": 0.7 },
+      "E2": { "main": "ei", "weight": 0.5 },
+      "E3": { "main": "ca", "weight": 0.6 },
+      "A1": { "main": "ca", "weight": 0.5 },
+      "A2": { "main": "ps", "weight": 0.9 },
+      "A3": { "main": "lf", "weight": 0.6 },
+      "C1": { "main": "ca", "weight": 0.8 },
+      "C2": { "main": "ca", "weight": 0.7 },
+      "L1": { "main": "lf", "weight": 0.8 },
+      "L2": { "main": "lf", "weight": 0.7 },
+      "P1": { "main": "ps", "weight": 0.6 },
+      "P2": { "main": "ps", "weight": 0.9 }
+    }
   },
   "BOSS": {
     "name": "领导者",
@@ -15,7 +33,25 @@
     "fullDesc": "这只宝贝天生自带领导气场。它决定什么时候吃饭、什么时候玩、什么时候该摸它。你以为你在养它，其实是它在管理你。生活信条：我是老大，你们都要听我的。",
     "suggestions": "给它一点掌控感，它会表现得特别有担当。",
     "toys": "指挥棒玩具、皇冠玩具、高级狗窝/猫窝",
-    "tips": "别和它抢遥控器，它会用眼神杀死你。"
+    "tips": "别和它抢遥控器，它会用眼神杀死你。",
+    "vector": { "ei": 8, "ca": 2, "lf": 6, "ps": 9 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.8 },
+      "S2": { "main": "ps", "weight": 0.7 },
+      "S3": { "main": "lf", "weight": 0.6 },
+      "E1": { "main": "lf", "weight": 0.5 },
+      "E2": { "main": "ei", "weight": 0.4 },
+      "E3": { "main": "ca", "weight": 0.3 },
+      "A1": { "main": "ca", "weight": 0.6 },
+      "A2": { "main": "ps", "weight": 0.8 },
+      "A3": { "main": "lf", "weight": 0.7 },
+      "C1": { "main": "ca", "weight": 0.4 },
+      "C2": { "main": "ca", "weight": 0.5 },
+      "L1": { "main": "lf", "weight": 0.8 },
+      "L2": { "main": "lf", "weight": 0.6 },
+      "P1": { "main": "ps", "weight": 0.9 },
+      "P2": { "main": "ps", "weight": 0.8 }
+    }
   },
   "MONK": {
     "name": "僧人",
@@ -24,7 +60,25 @@
     "fullDesc": "你家宝贝是得道高僧转世。无论外面多热闹，它都能淡定地躺平。饿了就吃，困了就睡，不争不抢，不急不躁。生活信条：一切随缘，躺着最香。",
     "suggestions": "别强迫它运动，它会用眼神告诉你：凡所有相，皆是虚妄。",
     "toys": "超大懒人窝、静音玩具、佛系毛绒垫",
-    "tips": "它不理你的时候，不是讨厌你，只是它在参禅。"
+    "tips": "它不理你的时候，不是讨厌你，只是它在参禅。",
+    "vector": { "ei": -4, "ca": -3, "lf": 11, "ps": -2 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.7 },
+      "S2": { "main": "ps", "weight": 0.9 },
+      "S3": { "main": "lf", "weight": 0.5 },
+      "E1": { "main": "lf", "weight": 0.8 },
+      "E2": { "main": "ei", "weight": 0.6 },
+      "E3": { "main": "ca", "weight": 0.4 },
+      "A1": { "main": "ca", "weight": 0.8 },
+      "A2": { "main": "ps", "weight": 0.7 },
+      "A3": { "main": "lf", "weight": 0.6 },
+      "C1": { "main": "ca", "weight": 0.3 },
+      "C2": { "main": "ca", "weight": 0.2 },
+      "L1": { "main": "lf", "weight": 0.9 },
+      "L2": { "main": "lf", "weight": 0.8 },
+      "P1": { "main": "ps", "weight": 0.8 },
+      "P2": { "main": "ps", "weight": 0.9 }
+    }
   },
   "SOUL": {
     "name": "灵魂床伴",
@@ -33,7 +87,25 @@
     "fullDesc": "这只宝贝把『粘人』发挥到了极致。它最喜欢的事情就是贴着你睡觉，不管你翻身多少次，它都能精准跟上。生活信条：你睡哪儿，我就睡哪儿，你就是我的全世界。",
     "suggestions": "准备一个够大的床，它需要充足的贴贴空间。",
     "toys": "你的旧衣服做的抱枕、暖手宝式毛绒玩具",
-    "tips": "半夜被它压得喘不过气时，记得温柔推开，它只是太爱你了。"
+    "tips": "半夜被它压得喘不过气时，记得温柔推开，它只是太爱你了。",
+    "vector": { "ei": -2, "ca": 1, "lf": 2, "ps": -8 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.4 },
+      "S2": { "main": "ps", "weight": 0.5 },
+      "S3": { "main": "lf", "weight": 0.9 },
+      "E1": { "main": "lf", "weight": 1.0 },
+      "E2": { "main": "ei", "weight": 0.8 },
+      "E3": { "main": "ca", "weight": 0.6 },
+      "A1": { "main": "ca", "weight": 0.5 },
+      "A2": { "main": "ps", "weight": 0.4 },
+      "A3": { "main": "lf", "weight": 0.7 },
+      "C1": { "main": "ca", "weight": 0.3 },
+      "C2": { "main": "ca", "weight": 0.4 },
+      "L1": { "main": "lf", "weight": 0.9 },
+      "L2": { "main": "lf", "weight": 0.95 },
+      "P1": { "main": "ps", "weight": 0.3 },
+      "P2": { "main": "ps", "weight": 0.4 }
+    }
   },
   "OKBJ": {
     "name": "无所谓人",
@@ -42,7 +114,24 @@
     "fullDesc": "你家宝贝是真正的佛系选手。你问它吃什么？OK。你问它去哪儿？随便。你问它要不要玩？都行。生活信条：只要有饭吃，我什么都OK。",
     "suggestions": "给它选择权的时候，它通常会选最省事的那一个。",
     "toys": "随便什么玩具都行",
-    "tips": "它看起来无所谓，其实心里清楚得很，只是懒得跟你计较。"
+    "tips": "它看起来无所谓，其实心里清楚得很，只是懒得跟你计较。",
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.5 },
+      "S2": { "main": "ps", "weight": 0.8 },
+      "S3": { "main": "lf", "weight": 0.6 },
+      "E1": { "main": "lf", "weight": 0.4 },
+      "E2": { "main": "ei", "weight": 0.7 },
+      "E3": { "main": "ca", "weight": 0.5 },
+      "A1": { "main": "ca", "weight": 0.7 },
+      "A2": { "main": "ps", "weight": 0.9 },
+      "A3": { "main": "lf", "weight": 0.5 },
+      "C1": { "main": "ca", "weight": 0.6 },
+      "C2": { "main": "ca", "weight": 0.5 },
+      "L1": { "main": "lf", "weight": 0.6 },
+      "L2": { "main": "lf", "weight": 0.5 },
+      "P1": { "main": "ps", "weight": 0.9 },
+      "P2": { "main": "ps", "weight": 0.95 }
+    }
   },
   "SEXY": {
     "name": "肚皮尤物",
@@ -51,7 +140,25 @@
     "fullDesc": "这只宝贝天生会撩。它最擅长的事就是突然翻肚皮，露出软软的毛和粉粉的肉垫，然后用无辜的眼神看着你。生活信条：可爱就是我的武器。",
     "suggestions": "多夸它漂亮，它会更爱翻肚皮。",
     "toys": "会发出声音的毛绒玩具、逗猫棒",
-    "tips": "别被它的美色迷惑，它翻肚皮只是想让你摸，并不代表它想被摸很久。"
+    "tips": "别被它的美色迷惑，它翻肚皮只是想让你摸，并不代表它想被摸很久。",
+    "vector": { "ei": 7, "ca": 5, "lf": -3, "ps": 4 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.8 },
+      "S2": { "main": "ps", "weight": 0.6 },
+      "S3": { "main": "lf", "weight": 0.4 },
+      "E1": { "main": "lf", "weight": 0.5 },
+      "E2": { "main": "ei", "weight": 0.9 },
+      "E3": { "main": "ca", "weight": 0.7 },
+      "A1": { "main": "ca", "weight": 0.6 },
+      "A2": { "main": "ps", "weight": 0.5 },
+      "A3": { "main": "lf", "weight": 0.4 },
+      "C1": { "main": "ca", "weight": 0.8 },
+      "C2": { "main": "ca", "weight": 0.7 },
+      "L1": { "main": "lf", "weight": 0.3 },
+      "L2": { "main": "lf", "weight": 0.4 },
+      "P1": { "main": "ps", "weight": 0.8 },
+      "P2": { "main": "ps", "weight": 0.6 }
+    }
   },
   "LUCK": {
     "name": "招财小福星",
@@ -60,7 +167,25 @@
     "fullDesc": "你家宝贝自带招财属性。它往哪儿一坐，家里就充满财运。生活信条：我躺着就有钱进账，你们努力干活就行了。",
     "suggestions": "给它准备一个红色的窝，它会更灵。",
     "toys": "金元宝玩具、招财猫造型玩具",
-    "tips": "别指望它帮你看家，它只会负责躺着纳福。"
+    "tips": "别指望它帮你看家，它只会负责躺着纳福。",
+    "vector": { "ei": 3, "ca": -2, "lf": 8, "ps": 6 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.6 },
+      "S2": { "main": "ps", "weight": 0.7 },
+      "S3": { "main": "lf", "weight": 0.8 },
+      "E1": { "main": "lf", "weight": 0.9 },
+      "E2": { "main": "ei", "weight": 0.5 },
+      "E3": { "main": "ca", "weight": 0.4 },
+      "A1": { "main": "ca", "weight": 0.5 },
+      "A2": { "main": "ps", "weight": 0.8 },
+      "A3": { "main": "lf", "weight": 0.7 },
+      "C1": { "main": "ca", "weight": 0.3 },
+      "C2": { "main": "ca", "weight": 0.4 },
+      "L1": { "main": "lf", "weight": 0.95 },
+      "L2": { "main": "lf", "weight": 0.85 },
+      "P1": { "main": "ps", "weight": 0.6 },
+      "P2": { "main": "ps", "weight": 0.7 }
+    }
   },
   "HUGS": {
     "name": "抱抱星人",
@@ -69,7 +194,25 @@
     "fullDesc": "这只宝贝的日常就是：看见你就扑过来要抱抱。无论你心情好坏，它都要先给你一个大大的拥抱。生活信条：抱抱治愈一切烦恼。",
     "suggestions": "每天固定抱抱时间，它会非常满足。",
     "toys": "大号抱枕、可以拥抱的毛绒玩具",
-    "tips": "它抱你的时候别动，它需要充满电。"
+    "tips": "它抱你的时候别动，它需要充满电。",
+    "vector": { "ei": 6, "ca": -1, "lf": 10, "ps": -4 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.7 },
+      "S2": { "main": "ps", "weight": 0.5 },
+      "S3": { "main": "lf", "weight": 0.9 },
+      "E1": { "main": "lf", "weight": 0.95 },
+      "E2": { "main": "ei", "weight": 0.8 },
+      "E3": { "main": "ca", "weight": 0.6 },
+      "A1": { "main": "ca", "weight": 0.5 },
+      "A2": { "main": "ps", "weight": 0.4 },
+      "A3": { "main": "lf", "weight": 0.8 },
+      "C1": { "main": "ca", "weight": 0.4 },
+      "C2": { "main": "ca", "weight": 0.3 },
+      "L1": { "main": "lf", "weight": 0.9 },
+      "L2": { "main": "lf", "weight": 0.95 },
+      "P1": { "main": "ps", "weight": 0.5 },
+      "P2": { "main": "ps", "weight": 0.6 }
+    }
   },
   "FOOD": {
     "name": "吃货天王",
@@ -78,7 +221,25 @@
     "fullDesc": "你家宝贝活着就是为了吃饭。它能准确分辨出冰箱开门的声音，听到包装袋响动会瞬间出现在你脚边。生活信条：吃饱了才有力气睡觉。",
     "suggestions": "控制好饭量，不然它会变成圆滚滚。",
     "toys": "慢食玩具、益智喂食器",
-    "tips": "它看着你吃饭的眼神，真的会让你产生愧疚感。"
+    "tips": "它看着你吃饭的眼神，真的会让你产生愧疚感。",
+    "vector": { "ei": 2, "ca": 9, "lf": 1, "ps": -3 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.5 },
+      "S2": { "main": "ps", "weight": 0.6 },
+      "S3": { "main": "lf", "weight": 0.4 },
+      "E1": { "main": "lf", "weight": 0.5 },
+      "E2": { "main": "ei", "weight": 0.6 },
+      "E3": { "main": "ca", "weight": 0.4 },
+      "A1": { "main": "ca", "weight": 0.9 },
+      "A2": { "main": "ps", "weight": 0.7 },
+      "A3": { "main": "lf", "weight": 0.5 },
+      "C1": { "main": "ca", "weight": 0.95 },
+      "C2": { "main": "ca", "weight": 0.85 },
+      "L1": { "main": "lf", "weight": 0.6 },
+      "L2": { "main": "lf", "weight": 0.5 },
+      "P1": { "main": "ps", "weight": 0.4 },
+      "P2": { "main": "ps", "weight": 0.5 }
+    }
   },
   "GOGO": {
     "name": "运动狂魔",
@@ -87,7 +248,25 @@
     "fullDesc": "这只宝贝一天能跑十公里都不带喘的。它最喜欢的事情就是让你陪它疯跑。生活信条：不动就会死，动起来才快乐。",
     "suggestions": "每天至少陪它高强度运动40分钟，否则它会拆家。",
     "toys": "飞盘、拉力绳、激光笔",
-    "tips": "它累了的时候会突然躺平，别惊讶，它只是电量耗尽了。"
+    "tips": "它累了的时候会突然躺平，别惊讶，它只是电量耗尽了。",
+    "vector": { "ei": 10, "ca": 8, "lf": -5, "ps": 7 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.9 },
+      "S2": { "main": "ps", "weight": 0.6 },
+      "S3": { "main": "lf", "weight": 0.4 },
+      "E1": { "main": "lf", "weight": 0.3 },
+      "E2": { "main": "ei", "weight": 0.95 },
+      "E3": { "main": "ca", "weight": 0.7 },
+      "A1": { "main": "ca", "weight": 0.8 },
+      "A2": { "main": "ps", "weight": 0.5 },
+      "A3": { "main": "lf", "weight": 0.4 },
+      "C1": { "main": "ca", "weight": 0.9 },
+      "C2": { "main": "ca", "weight": 0.95 },
+      "L1": { "main": "lf", "weight": 0.5 },
+      "L2": { "main": "lf", "weight": 0.4 },
+      "P1": { "main": "ps", "weight": 0.9 },
+      "P2": { "main": "ps", "weight": 0.7 }
+    }
   },
   "WOC": {
     "name": "握草无敌",
@@ -96,7 +275,25 @@
     "fullDesc": "你家宝贝的表情管理大师。一看到新玩具、新食物、新人，它就会发出“卧槽”的眼神。生活信条：这个世界太神奇了，我要好好震惊一下。",
     "suggestions": "多带它见见世面，它会给你很多有趣的表情包。",
     "toys": "会突然弹出东西的玩具",
-    "tips": "它用那种震惊的眼神看着你的时候，通常是想让你给它加餐。"
+    "tips": "它用那种震惊的眼神看着你的时候，通常是想让你给它加餐。",
+    "vector": { "ei": 5, "ca": 7, "lf": -2, "ps": 3 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.7 },
+      "S2": { "main": "ps", "weight": 0.6 },
+      "S3": { "main": "lf", "weight": 0.5 },
+      "E1": { "main": "lf", "weight": 0.4 },
+      "E2": { "main": "ei", "weight": 0.8 },
+      "E3": { "main": "ca", "weight": 0.7 },
+      "A1": { "main": "ca", "weight": 0.9 },
+      "A2": { "main": "ps", "weight": 0.5 },
+      "A3": { "main": "lf", "weight": 0.6 },
+      "C1": { "main": "ca", "weight": 0.95 },
+      "C2": { "main": "ca", "weight": 0.85 },
+      "L1": { "main": "lf", "weight": 0.5 },
+      "L2": { "main": "lf", "weight": 0.4 },
+      "P1": { "main": "ps", "weight": 0.7 },
+      "P2": { "main": "ps", "weight": 0.6 }
+    }
   },
   "SMALLZ": {
     "name": "小祖宗",
@@ -105,7 +302,25 @@
     "fullDesc": "这只宝贝就是家里的小祖宗。它想干嘛就干嘛，你只能乖乖配合。生活信条：我就是规矩，我的话就是圣旨。",
     "suggestions": "提前接受现实，它就是来当祖宗的。",
     "toys": "它喜欢什么就买什么",
-    "tips": "别和它讲道理，你讲不过它的。"
+    "tips": "别和它讲道理，你讲不过它的。",
+    "vector": { "ei": 4, "ca": -4, "lf": 9, "ps": 8 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.8 },
+      "S2": { "main": "ps", "weight": 0.9 },
+      "S3": { "main": "lf", "weight": 0.85 },
+      "E1": { "main": "lf", "weight": 0.9 },
+      "E2": { "main": "ei", "weight": 0.6 },
+      "E3": { "main": "ca", "weight": 0.5 },
+      "A1": { "main": "ca", "weight": 0.4 },
+      "A2": { "main": "ps", "weight": 0.95 },
+      "A3": { "main": "lf", "weight": 0.8 },
+      "C1": { "main": "ca", "weight": 0.3 },
+      "C2": { "main": "ca", "weight": 0.4 },
+      "L1": { "main": "lf", "weight": 0.95 },
+      "L2": { "main": "lf", "weight": 0.9 },
+      "P1": { "main": "ps", "weight": 0.9 },
+      "P2": { "main": "ps", "weight": 0.85 }
+    }
   },
   "CTRL": {
     "name": "拿捏者",
@@ -114,16 +329,52 @@
     "fullDesc": "这只宝贝是拿捏高手。它知道什么时候撒娇、什么时候装可怜、什么时候突然高冷。你以为你养了它，其实它把你拿捏得死死的。生活信条：我轻轻一卖萌，你就乖乖投降。",
     "suggestions": "偶尔也要反拿捏一下，不然它会越来越得寸进尺。",
     "toys": "会响的毛绒玩具、逗猫棒",
-    "tips": "它用无辜眼神看着你的时候，通常是想让你多给两口饭。"
+    "tips": "它用无辜眼神看着你的时候，通常是想让你多给两口饭。",
+    "vector": { "ei": 9, "ca": 6, "lf": -6, "ps": 5 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.9 },
+      "S2": { "main": "ps", "weight": 0.7 },
+      "S3": { "main": "lf", "weight": 0.6 },
+      "E1": { "main": "lf", "weight": 0.5 },
+      "E2": { "main": "ei", "weight": 0.95 },
+      "E3": { "main": "ca", "weight": 0.8 },
+      "A1": { "main": "ca", "weight": 0.7 },
+      "A2": { "main": "ps", "weight": 0.8 },
+      "A3": { "main": "lf", "weight": 0.6 },
+      "C1": { "main": "ca", "weight": 0.8 },
+      "C2": { "main": "ca", "weight": 0.75 },
+      "L1": { "main": "lf", "weight": 0.5 },
+      "L2": { "main": "lf", "weight": 0.6 },
+      "P1": { "main": "ps", "weight": 0.9 },
+      "P2": { "main": "ps", "weight": 0.7 }
+    }
   },
   "THANK": {
     "name": "感恩者",
-    "english": "THAN-K",
+    "english": "THANK",
     "nickname": "感恩小天使",
     "fullDesc": "你家宝贝是感恩小天使。吃一口饭就要摇尾巴，摸一下头就要靠过来，给你一种“我养了世界上最懂事的宝贝”的错觉。生活信条：主人对我这么好，我要用生命报答。",
     "suggestions": "多夸它，它会更努力地表现得乖巧。",
     "toys": "任何能让它表达感谢的玩具",
-    "tips": "它其实只是演技好，别太感动，它只是想多要点零食。"
+    "tips": "它其实只是演技好，别太感动，它只是想多要点零食。",
+    "vector": { "ei": 6, "ca": 3, "lf": 10, "ps": -1 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.7 },
+      "S2": { "main": "ps", "weight": 0.6 },
+      "S3": { "main": "lf", "weight": 0.9 },
+      "E1": { "main": "lf", "weight": 0.95 },
+      "E2": { "main": "ei", "weight": 0.8 },
+      "E3": { "main": "ca", "weight": 0.6 },
+      "A1": { "main": "ca", "weight": 0.5 },
+      "A2": { "main": "ps", "weight": 0.7 },
+      "A3": { "main": "lf", "weight": 0.8 },
+      "C1": { "main": "ca", "weight": 0.4 },
+      "C2": { "main": "ca", "weight": 0.5 },
+      "L1": { "main": "lf", "weight": 0.95 },
+      "L2": { "main": "lf", "weight": 0.9 },
+      "P1": { "main": "ps", "weight": 0.5 },
+      "P2": { "main": "ps", "weight": 0.6 }
+    }
   },
   "ATM": {
     "name": "送钱者",
@@ -132,7 +383,25 @@
     "fullDesc": "这只宝贝天生自带吸金体质。你给它买玩具，它就更可爱；你给它买零食，它就更粘人。生活信条：你对我越好，我就越可爱给你看。",
     "suggestions": "理性消费，它真的很会花你的钱。",
     "toys": "任何贵一点的玩具",
-    "tips": "它看着你掏钱包的眼神，比任何广告都有效。"
+    "tips": "它看着你掏钱包的眼神，比任何广告都有效。",
+    "vector": { "ei": 3, "ca": 4, "lf": 5, "ps": 2 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.6 },
+      "S2": { "main": "ps", "weight": 0.7 },
+      "S3": { "main": "lf", "weight": 0.6 },
+      "E1": { "main": "lf", "weight": 0.5 },
+      "E2": { "main": "ei", "weight": 0.7 },
+      "E3": { "main": "ca", "weight": 0.8 },
+      "A1": { "main": "ca", "weight": 0.9 },
+      "A2": { "main": "ps", "weight": 0.8 },
+      "A3": { "main": "lf", "weight": 0.7 },
+      "C1": { "main": "ca", "weight": 0.8 },
+      "C2": { "main": "ca", "weight": 0.75 },
+      "L1": { "main": "lf", "weight": 0.6 },
+      "L2": { "main": "lf", "weight": 0.5 },
+      "P1": { "main": "ps", "weight": 0.6 },
+      "P2": { "main": "ps", "weight": 0.7 }
+    }
   },
   "LOVER": {
     "name": "多情者",
@@ -141,6 +410,24 @@
     "fullDesc": "这只宝贝对谁都热情。对快递小哥摇尾巴，对邻居的猫抛媚眼，对路过的狗也要去打招呼。生活信条：爱是分享的，我要爱全世界。",
     "suggestions": "多带它社交，它会非常开心。",
     "toys": "能发出声音的互动玩具",
-    "tips": "别吃醋，它只是天性多情，对你的爱其实是最深的。"
+    "tips": "别吃醋，它只是天性多情，对你的爱其实是最深的。",
+    "vector": { "ei": 11, "ca": 5, "lf": 7, "ps": -7 },
+    "dimensionProfiles": {
+      "S1": { "main": "ei", "weight": 0.9 },
+      "S2": { "main": "ps", "weight": 0.5 },
+      "S3": { "main": "lf", "weight": 0.8 },
+      "E1": { "main": "lf", "weight": 0.7 },
+      "E2": { "main": "ei", "weight": 0.95 },
+      "E3": { "main": "ca", "weight": 0.6 },
+      "A1": { "main": "ca", "weight": 0.7 },
+      "A2": { "main": "ps", "weight": 0.6 },
+      "A3": { "main": "lf", "weight": 0.7 },
+      "C1": { "main": "ca", "weight": 0.8 },
+      "C2": { "main": "ca", "weight": 0.75 },
+      "L1": { "main": "lf", "weight": 0.8 },
+      "L2": { "main": "lf", "weight": 0.85 },
+      "P1": { "main": "ps", "weight": 0.4 },
+      "P2": { "main": "ps", "weight": 0.5 }
+    }
   }
 }

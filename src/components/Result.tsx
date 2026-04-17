@@ -9,19 +9,12 @@ import { petImages } from '@/utils/preloadImages';
 import { useState } from 'react';
 
 export default function Result() {
-  const { goToStep, getPersonalityType, calculateScores } = useQuizStore();
+  const { goToStep, getPersonalityType, calculateScores, getDimensionScores } = useQuizStore();
 
-  const typeKey = getPersonalityType() || "UNKNOWN";
+  const mappedKey = getPersonalityType();
   const coreScores = calculateScores();
+  const dimensions = getDimensionScores();
 
-  const keyMapping: Record<string, string> = {
-    "ECLP": "GOGO", "ECLS": "HUGS", "ECFP": "WOC", "ECFS": "OKBJ",
-    "EALP": "SEXY", "EALS": "SOUL", "EAFP": "FOOD", "EAFS": "MONK",
-    "ICLP": "CLEAN", "ICLS": "MONK", "ICFP": "WOC", "ICFS": "OKBJ",
-    "IALP": "SOUL", "IALS": "MONK", "IAFP": "LUCK", "IAFS": "MONK",
-  };
-
-  const mappedKey = keyMapping[typeKey] || typeKey;
   const imageSrc = (petImages as any)[mappedKey];
   const [imageError, setImageError] = useState(false);
 
@@ -36,38 +29,26 @@ export default function Result() {
   };
 
   // ==================== 动态匹配度 ====================
-  const absTotal = Math.abs(coreScores.ei) + Math.abs(coreScores.ca) + 
-                   Math.abs(coreScores.lf) + Math.abs(coreScores.ps);
-  
-  const matchPercent = Math.min(Math.max(Math.round(55 + (absTotal / 22) * 40), 55), 92);
+  const userVector = coreScores;
+  const idealVector = result.vector || {ei: 0, ca: 0, lf: 0, ps: 0};
 
-  const strongCount = [
-    Math.abs(coreScores.ei) >= 4,
-    Math.abs(coreScores.ca) >= 4,
-    Math.abs(coreScores.lf) >= 4,
-    Math.abs(coreScores.ps) >= 4,
-  ].filter(Boolean).length;
+  const distance = Math.sqrt(
+    Math.pow(userVector.ei - idealVector.ei, 2) +
+    Math.pow(userVector.ca - idealVector.ca, 2) +
+    Math.pow(userVector.lf - idealVector.lf, 2) +
+    Math.pow(userVector.ps - idealVector.ps, 2)
+  );
 
-  const hitDimensions = 7 + strongCount * 2;
+  const maxPossibleDistance = 30;
+  const matchPercent = Math.max(62, Math.min(94, Math.round(94 - (distance / maxPossibleDistance) * 32)));
+
+  // 动态计算命中维度数（与最终宠格的理想表现接近的维度）
+  const hitDimensions = dimensions.filter((dim: any) => {
+    const scoreStr = dim.score;
+    return scoreStr.includes("H") || scoreStr.includes("M");
+  }).length;
 
   // ==================== 十五维度评分 ====================
-  const dimensions = [
-    { id: "S1", name: "自尊自信", desc: "自信随天气波动，顺风能飞，逆风先缩。", score: coreScores.ei > 0 ? "M / 4分" : "L / 2分" },
-    { id: "S2", name: "自我清晰度", desc: "内心频道雪花较多，常在'我是谁'里循环缓存。", score: coreScores.ps > 0 ? "H / 5分" : "M / 3分" },
-    { id: "S3", name: "核心价值", desc: "很容易被目标、成长或某种重要信念推着往前。", score: coreScores.lf > 0 ? "H / 5分" : "M / 3分" },
-    { id: "E1", name: "依恋安全感", desc: "感情里警报器灵敏，已读不回都能脑补到大结局。", score: coreScores.lf > 0 ? "M / 4分" : "L / 2分" },
-    { id: "E2", name: "情感投入度", desc: "感情投入偏克制，心门不是没开，是门禁太严。", score: coreScores.ei > 0 ? "M / 3分" : "L / 3分" },
-    { id: "E3", name: "边界与依赖", desc: "空间感很重要，再爱也得留一块属于自己的地。", score: coreScores.ca > 0 ? "M / 4分" : "L / 3分" },
-    { id: "A1", name: "世界观倾向", desc: "既不天真也不彻底阴谋论，观望是你的本能。", score: coreScores.ca > 0 ? "M / 4分" : "L / 3分" },
-    { id: "A2", name: "规则与灵活度", desc: "秩序感较强，能按流程来就不爱即兴炸场。", score: coreScores.ps > 0 ? "H / 5分" : "L / 2分" },
-    { id: "A3", name: "人生意义感", desc: "做事更有方向，知道自己大概要往哪边走。", score: coreScores.lf > 0 ? "H / 5分" : "M / 3分" },
-    { id: "C1", name: "好奇心指数", desc: "看到新东西就两眼放光，探索欲拉满。", score: coreScores.ca > 0 ? "H / 5分" : "L / 2分" },
-    { id: "C2", name: "冒险精神", desc: "新路线、新玩具、新环境都想试试。", score: coreScores.ca > 0 ? "M / 4分" : "L / 3分" },
-    { id: "L1", name: "忠诚度", desc: "一旦认定你就很坚定，轻易不会换主人。", score: coreScores.lf > 0 ? "H / 5分" : "L / 2分" },
-    { id: "L2", name: "守护欲", desc: "你不开心时它会主动过来安慰。", score: coreScores.lf > 0 ? "M / 4分" : "L / 3分" },
-    { id: "P1", name: "顽皮指数", desc: "精力旺盛，喜欢突然搞事情。", score: coreScores.ps > 0 ? "M / 3分" : "L / 5分" },
-    { id: "P2", name: "生活节奏", desc: "是喜欢规律还是随性而为。", score: coreScores.ps > 0 ? "H / 5分" : "L / 2分" },
-  ];
 
   return (
     <motion.div 
@@ -142,7 +123,7 @@ export default function Result() {
             <p className="text-xl leading-relaxed text-gray-700">{result.fullDesc}</p>
           </Card>
 
-          {/* 十五维度评分 */}
+          {/* 动态十五维度评分 */}
           <Card className="mt-10 p-5 bg-gradient-to-br from-orange-50 to-pink-50 border border-green-300">
             <h3 className="text-2xl font-bold text-gray-800 mb-2 text-left">十五维度评分</h3>
             
