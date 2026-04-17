@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { PawPrint } from 'lucide-react';
 
 export default function Result() {
   const { goToStep, getPersonalityType, calculateScores } = useQuizStore();
@@ -34,18 +33,17 @@ export default function Result() {
   };
 
   // ==================== 图片预加载 ====================
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [, setImageLoaded] = useState(false);
 
   useEffect(() => {
+    if(!imageSrc) return;
+
     // 提前预加载图片
     const img = new Image();
     img.src = imageSrc;
 
     img.onload = () => setImageLoaded(true);
-    img.onerror = () => {
-      // 加载失败时使用占位图
-      setImageLoaded(true);
-    };
+    img.onerror = () => setImageLoaded(true);
   }, [imageSrc]);
 
   // ==================== 动态匹配度 ====================
@@ -113,16 +111,11 @@ export default function Result() {
                 animate={{ scale: 1, rotate: 0 }}
                 className="w-52 h-52 bg-gradient-to-br from-morandi-pink/10 to-morandi-mint/10 rounded-2xl flex items-center justify-center border-8 border-pink shadow-2xl mb-5 overflow-hidden"
               >
-                {/* 图片加载前的占位图（可爱爪印） */}
-                {!imageLoaded && (
-                  <div className='absolute inset-0 flex items-center justify-center bg-gray-100 rounded-2xl animate-pulse'>
-                    <PawPrint className='w-16 h-16 text-gray-300'/>
-                  </div>
-                )}
                 <img 
                   src={imageSrc} 
                   alt={result.name}
-                  className="w-full h-full object-contain"
+                  className={"w-full h-full object-contain transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-60'}"}
+                  onLoad={() => setImageLoaded(true)}
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = '/images/pets/placeholder.png';
                   }}
