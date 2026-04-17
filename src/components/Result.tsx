@@ -19,7 +19,7 @@ import gogoImg from '/images/pets/GOGO.png';
 import wocImg from '/images/pets/WOC.png';
 import smallzImg from '/images/pets/SMALLZ.png';
 import ctrlImg from '/images/pets/CTRL.png';
-import thankImg from '/images/pets/THAN-K.png';
+import thankImg from '/images/pets/THANK.png';
 import atmImg from '/images/pets/ATM.png';
 import loverImg from '/images/pets/LOVER.png';
 
@@ -37,7 +37,7 @@ const imageMap: Record<string, string> = {
   WOC: wocImg,
   SMALLZ: smallzImg,
   CTRL: ctrlImg,
-  "THANK": thankImg,
+  THANK: thankImg,
   ATM: atmImg,
   LOVER: loverImg,
 };
