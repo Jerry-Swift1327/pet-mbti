@@ -37,8 +37,6 @@ export default function Result() {
 
   useEffect(() => {
     if(!imageSrc) return;
-
-    // 提前预加载图片
     const img = new Image();
     img.src = imageSrc;
 
@@ -114,8 +112,11 @@ export default function Result() {
                 <img 
                   src={imageSrc} 
                   alt={result.name}
-                  className={"w-full h-full object-contain transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-60'}"}
-                  onLoad={() => setImageLoaded(true)}
+                  loading = 'eager'
+                  fetchPriority = 'high'
+                  decoding ='sync'
+                  className = "w-full h-full object-contain"
+                  onLoad={() => {}}
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = '/images/pets/placeholder.png';
                   }}
