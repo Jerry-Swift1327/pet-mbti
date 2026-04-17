@@ -6,11 +6,47 @@ import { Card } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+import cleanImg from '/images/pets/CLEAN.png';
+import bossImg from '/images/pets/BOSS.png';
+import monkImg from '/images/pets/MONK.png';
+import soulImg from '/images/pets/SOUL.png';
+import okbjImg from '/images/pets/OKBJ.png';
+import sexyImg from '/images/pets/SEXY.png';
+import luckImg from '/images/pets/LUCK.png';
+import hugsImg from '/images/pets/HUGS.png';
+import foodImg from '/images/pets/FOOD.png';
+import gogoImg from '/images/pets/GOGO.png';
+import wocImg from '/images/pets/WOC.png';
+import smallzImg from '/images/pets/SMALLZ.png';
+import ctrlImg from '/images/pets/CTRL.png';
+import thankImg from '/images/pets/THAN-K.png';
+import atmImg from '/images/pets/ATM.png';
+import loverImg from '/images/pets/LOVER.png';
+
+const imageMap: Record<string, string> = {
+  CLEAN: cleanImg,
+  BOSS: bossImg,
+  MONK: monkImg,
+  SOUL: soulImg,
+  OKBJ: okbjImg,
+  SEXY: sexyImg,
+  LUCK: luckImg,
+  HUGS: hugsImg,
+  FOOD: foodImg,
+  GOGO: gogoImg,
+  WOC: wocImg,
+  SMALLZ: smallzImg,
+  CTRL: ctrlImg,
+  "THAN-K": thankImg,
+  ATM: atmImg,
+  LOVER: loverImg,
+};
+
 export default function Result() {
   const { goToStep, getPersonalityType, calculateScores } = useQuizStore();
 
   const typeKey = getPersonalityType() || "UNKNOWN";
-  const coreScores = calculateScores(); // ← 必须调用！
+  const coreScores = calculateScores();
 
   const keyMapping: Record<string, string> = {
     "ECLP": "GOGO", "ECLS": "HUGS", "ECFP": "WOC", "ECFS": "OKBJ",
@@ -20,7 +56,7 @@ export default function Result() {
   };
 
   const mappedKey = keyMapping[typeKey] || typeKey;
-  const imageSrc = `/images/pets/${mappedKey}.png`;
+  const imageSrc = imageMap[mappedKey]
 
   const result = (resultsData as any)[mappedKey] || {
     name: "未知类型",
