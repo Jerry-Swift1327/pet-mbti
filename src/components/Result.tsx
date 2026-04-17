@@ -37,7 +37,7 @@ const imageMap: Record<string, string> = {
   WOC: wocImg,
   SMALLZ: smallzImg,
   CTRL: ctrlImg,
-  "THAN-K": thankImg,
+  "THANK": thankImg,
   ATM: atmImg,
   LOVER: loverImg,
 };
