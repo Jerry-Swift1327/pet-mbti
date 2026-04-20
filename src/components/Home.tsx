@@ -96,7 +96,7 @@ export default function Home() {
           className="mb-12"
         >
           <Button
-            onClick={() => goToStep(2)}
+            onClick={() => goToStep(1)}
             className="w-full max-w-xs mx-auto bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 
                        text-white text-3xl py-8 rounded-full shadow-xl flex items-center justify-center gap-4 font-bold"
           >

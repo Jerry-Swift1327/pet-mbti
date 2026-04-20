@@ -168,7 +168,7 @@ export default function Result() {
           <Button 
             onClick={() => { 
               useQuizStore.getState().resetAnswers(); 
-              goToStep(2); 
+              goToStep(1); 
               setTimeout(() => {
                 window.scrollTo({
                   top:0,

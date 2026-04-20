@@ -29,7 +29,7 @@ export default function Quiz() {
     setSubmitted(true);
 
     setTimeout(() => {
-      goToStep(3);
+      goToStep(2);
       window.scrollTo({
         top:0,
         behavior:'instant'

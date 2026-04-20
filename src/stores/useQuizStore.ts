@@ -5,7 +5,7 @@ import resultsData from '@/data/results.json';
 type OptionIndex = 0 | 1 | 2 | 3 | 4;
 
 interface QuizState {
-  currentStep: number; // home, select, quiz, result, share
+  currentStep: number; // home, quiz, result
   answers: Record<number, OptionIndex>;
   answerQuestion: (qId: number, option: OptionIndex) => void;
   goToStep: (step: number) => void;
